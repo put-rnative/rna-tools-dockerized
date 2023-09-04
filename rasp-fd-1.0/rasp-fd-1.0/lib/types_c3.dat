@@ -1,0 +1,12 @@
+# Heavy atom:
+# AA/#NU/WA/OTHER, Residue name, Atom name, Terminal yes/no (1/0), Part of a centroid yes/no (1/0), 1-based Type	
+#					
+# #NUcleotides
+# Adenine					
+NU	A	C3'	0	0	1
+# Cytosine					
+NU	C	C3'	0	0	2
+# Guanine					
+NU	G	C3'	0	0	3
+# Uridine					
+NU	U	C3'	0	0	4

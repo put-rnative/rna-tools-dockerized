@@ -1,0 +1,65 @@
+# Heavy atom:
+# AA/#NU/WA/OTHER, Residue name, Atom name, Terminal yes/no (1/0), Part of a centroid yes/no (1/0), 1-based Type	
+#					
+# #NUcleotides
+# Adenine					
+NU	A	P	0	0	2
+NU	A	OP1	0	0	1
+NU	A	OP2	0	0	1
+NU	A	OP3	0	0	1
+NU	A	O5'	0	0	3
+NU	A	C5'	0	0	4
+NU	A	C4'	0	0	5
+NU	A	O4'	0	0	11
+NU	A	C3'	0	0	6
+NU	A	O3'	0	0	7
+NU	A	O3'	1	0	7
+NU	A	C2'	0	0	9
+NU	A	O2'	0	0	8
+NU	A	C1'	0	0	10
+# Cytosine					
+NU	C	P	0	0	13
+NU	C	OP1	0	0	12
+NU	C	OP2	0	0	12
+NU	C	OP3	0	0	12
+NU	C	O5'	0	0	14
+NU	C	C5'	0	0	15
+NU	C	C4'	0	0	16
+NU	C	O4'	0	0	22
+NU	C	C3'	0	0	17
+NU	C	O3'	0	0	18
+NU	C	O3'	1	0	18
+NU	C	C2'	0	0	20
+NU	C	O2'	0	0	19
+NU	C	C1'	0	0	21
+# Guanine					
+NU	G	P	0	0	24
+NU	G	OP1	0	0	23
+NU	G	OP2	0	0	23
+NU	G	OP3	0	0	23
+NU	G	O5'	0	0	25
+NU	G	C5'	0	0	26
+NU	G	C4'	0	0	27
+NU	G	O4'	0	0	33
+NU	G	C3'	0	0	28
+NU	G	O3'	0	0	29
+NU	G	O3'	1	0	29
+NU	G	C2'	0	0	31
+NU	G	O2'	0	0	30
+NU	G	C1'	0	0	32
+
+# Uridine					
+NU	U	P	0	0	35
+NU	U	OP1	0	0	34
+NU	U	OP2	0	0	34
+NU	U	OP3	0	0	34
+NU	U	O5'	0	0	36
+NU	U	C5'	0	0	37
+NU	U	C4'	0	0	38
+NU	U	O4'	0	0	44
+NU	U	C3'	0	0	39
+NU	U	O3'	0	0	40
+NU	U	O3'	1	0	40
+NU	U	C2'	0	0	42
+NU	U	O2'	0	0	41
+NU	U	C1'	0	0	43
