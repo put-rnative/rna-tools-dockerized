@@ -26,7 +26,7 @@ File "/home/RNA3DCNN/Main.py", line 4, in <module>
 ModuleNotFoundError: No module named 'Bio.PDB.Vector'
 
 ARES:
-TODO
+webserwer, go to page and upload a PDB file to get results.
  https://drorlab.stanford.edu/ares.html
 
 3dRNAscore:
