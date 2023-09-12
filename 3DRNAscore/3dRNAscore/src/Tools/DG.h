@@ -1,0 +1,43 @@
+#ifndef DG_H
+#define DG_H
+
+#include "std.h"
+#include "Obj.h"
+#include "Matr_.h"
+#include "Point.h"
+#include "MRand.h"
+#include "ran_uniform.h"
+
+class DG {
+public:
+	DG(Obj<Matr_>);
+	DG(Matr_ *, Matr_ *);
+	Matr_ *run();
+
+private:
+	void smooth();
+	void b2d();
+	void metric();
+	void d2c();
+	void c2d();
+	void gradient();
+	void cg();
+	void mc();
+	double at(Obj<Matr_>, int, int, int);
+	void assign(Obj<Matr_>, int, int, double, int);
+
+	int len;
+
+	Obj<Matr_> bound;
+	Matr_ *chir;
+	Matr_ *d;
+	Matr_ *m;
+	Matr_ *c;
+	Matr_ *g;
+	double g2;
+	double E;
+	double CH;
+};
+
+#endif
+

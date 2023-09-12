@@ -30,5 +30,4 @@ webserwer, go to page and upload a PDB file to get results.
  https://drorlab.stanford.edu/ares.html
 
 3dRNAscore:
-TODO
-http://biophy.hust.edu.cn/new/resources/3dRNAscore
+WORKS

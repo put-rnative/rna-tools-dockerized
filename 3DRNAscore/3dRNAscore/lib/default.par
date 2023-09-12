@@ -1,0 +1,6 @@
+par_dist /home/jian/work/3dRNAscore/lib/par_dist
+par_dih /home/jian/work/3dRNAscore/lib/par_dih
+dist_bin_width 0.3
+dih_bin_width 4.5
+dist_weight 0.433513
+dih_weight 1.59348

@@ -1,0 +1,28 @@
+Version:
+         3dRNAscore-1.0
+
+Install:
+         Step 1.  Just type 'make' in the command line.
+                  A binary executable file named '3dRNAscore' would be created in the 'bin' directory.
+         Step 2.  Set the 'RNAscore' environment to the path of the 3dRNAscore directory.
+
+Caution: 
+         It's better to check if the pdb files lack some atoms. We have provided a perl 
+         script named 'format.pl' in the 'lib' directory to help to check missing atoms. 
+         Just type './format.pl -check filename'. 
+
+Usage: 
+         1   ./3dRNAscore {-s}|{--score} <pdb_file> [<parameter_file>]
+               # score a single RNA named '<pdb_file>'.
+                 We've provided a sample parameter file in the 'lib' directory. The user 
+                 can control the parameters through the parameter file. 
+         2   ./3dRNAscore {-s:l}|{--score:list} <list_file> [<parameter_file>]
+               # score a list of RNA whose name were listed in the file '<parameter_file>'
+         3   ./3dRNAscore {-h}|{--help}
+               # help information
+         4   ./3dRNAscore {-v}|{--version}
+               # version information
+
+Please feel free to contact the 3dRNAscore team if you have any question!
+wj_hust08@hust.edu.cn yjzhao.wh@gmail.com
+

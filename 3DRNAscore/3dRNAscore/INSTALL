@@ -1,0 +1,3 @@
+Step 1.  Just type 'make' in the command line.
+         A binary executable file named '3dRNAscore' would be created in the 'bin' directory.
+Step 2.  Set the 'RNAscore' environment to the path of the 3dRNAscore directory.
