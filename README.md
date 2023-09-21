@@ -14,7 +14,7 @@ rasp-fd-1.0:
 WORKS, but with changes to code (env variable changed to just a string added by hand)
 
 RNA-BRiQ-main:
-UNTESTED
+DOESN'T WORK
 
 dfire_rna-master:
 DOESN'T WORK
