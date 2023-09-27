@@ -54,7 +54,8 @@ RUN pip --no-cache-dir install \
 		
 RUN pip --no-cache-dir install \
 		keras
-RUN conda install biopython 
+RUN pip3 install biopython
+
 
 # Install Keras
 #RUN pip --no-cache-dir install git+git://github.com/fchollet/keras.git
