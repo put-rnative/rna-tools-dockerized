@@ -21,9 +21,17 @@ RUN apt-get update \
 
 
 COPY . /home/
+ENV BRiQ_DATAPATH=/home/RNA-BRiQ-data
+ENV PATH=$PATH:/home/RNA-BRiQ//build/bin
+
+#readme advises:
+#wget http://servers.sparks-lab.org/downloads/RNA-BRiQ-data.tar.gz
+#export BRiQ_DATAPATH=FILEPATH/BRiQ_data     ## Change "FILEPATH" to the real path to contain the preprocessed data
+#tar -xvz RNA-BRiQ-data.tar.gz --one-top-level=$BRiQ_DATAPATH
+
+# 
 RUN cd /home/ && wget https://apisz.sparks-lab.org:8443/downloads/Resource/RNA/2_RNA_structure_prediction/RNA-BRiQ-data.tar.gz
 RUN cd /home/RNA-BRiQ/ && mkdir build && cd build && cmake ../ && make \
-	&& export BRiQ_DATAPATH=/home/RNA-BRiQ-data.tar.gz  \
-	&& tar -xvz RNA-BRiQ-data.tar.gz --one-top-level=$BRiQ_DATAPATH \   
+	&& tar -xvf /home/RNA-BRiQ-data.tar.gz /home/RNA-BRiQ-data \   
 	&& export PATH=$PATH:/home/RNA-BRiQ//build/bin 
 #RUN make
