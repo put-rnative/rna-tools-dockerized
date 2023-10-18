@@ -1,16 +1,12 @@
-
 FROM ubuntu:22.04
 
-RUN apt-get update && \
-      apt-get -y install sudo
-	  
-RUN apt update && apt install -y make
-RUN apt-get update && apt-get install build-essential -y
+RUN apt-get update \
+ && apt-get install -y \
+        build-essential \
+        make
 
+COPY cgRNASP /opt/cgRNASP
 
-
-COPY . /home/
-RUN cd /home/cgRNASP/cgRNASP-C && gcc cgRNASP-C.c -lm -o cgRNASP-C
-RUN cd /home/cgRNASP/cgRNASP-PC && gcc cgRNASP-PC.c -lm -o cgRNASP-PC
-RUN cd /home/cgRNASP/cgRNASP &&  gcc cgRNASP.c -lm -o cgRNASP
-#RUN make
+RUN gcc /opt/cgRNASP/cgRNASP/cgRNASP.c -lm -o /usr/bin/cgRNASP \
+ && gcc /opt/cgRNASP/cgRNASP-C/cgRNASP-C.c -lm -o /usr/bin/cgRNASP-C \
+ && gcc /opt/cgRNASP/cgRNASP-PC/cgRNASP-PC.c -lm -o /usr/bin/cgRNASP-PC
