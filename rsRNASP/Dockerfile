@@ -1,14 +1,10 @@
-
 FROM ubuntu:22.04
 
-RUN apt-get update && \
-      apt-get -y install sudo
-	  
-RUN apt update && apt install -y make
-RUN apt-get update && apt-get install build-essential -y
+RUN apt-get update \
+ && apt-get install -y \
+        build-essential \
+        make
 
+COPY rsRNASP /opt/rsRNASP
 
-
-COPY . /home/
-RUN cd /home/rsRNASP/ && gcc rsRNASP.c -lm -o rsRNASP
-#RUN make
+RUN gcc /opt/rsRNASP/rsRNASP.c -lm -o /usr/bin/rsRNASP
