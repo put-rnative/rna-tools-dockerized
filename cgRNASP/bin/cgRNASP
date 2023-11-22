@@ -1,0 +1,11 @@
+#! /bin/bash
+if [[ $# -ne 1 ]]; then
+    echo 'Usage: cgRNASP /path/to/dir'
+    exit 1
+fi
+
+tmp=$(mktemp)
+cd /opt/cgRNASP/cgRNASP
+./cgRNASP $1 $(find $1 -type f -name '*.pdb' | wc -l) ${tmp} >/dev/null
+cat ${tmp}
+rm ${tmp}

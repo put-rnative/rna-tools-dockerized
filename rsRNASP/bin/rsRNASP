@@ -1,0 +1,11 @@
+#! /bin/bash
+if [[ $# -ne 1 ]]; then
+    echo 'Usage: rsRNASP /path/to/pdb'
+    exit 1
+fi
+
+tmp=$(mktemp)
+cd /opt/rsRNASP
+./rsRNASP $1 ${tmp} >/dev/null
+cat ${tmp}
+rm ${tmp}

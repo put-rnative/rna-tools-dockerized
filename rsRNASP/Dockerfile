@@ -7,5 +7,6 @@ RUN apt-get update \
  && rm -rf /var/lib/apt/lists/*
 
 COPY rsRNASP /opt/rsRNASP
+COPY bin/rsRNASP /usr/bin/rsRNASP
 
-RUN gcc /opt/rsRNASP/rsRNASP.c -lm -o /usr/bin/rsRNASP
+RUN gcc /opt/rsRNASP/rsRNASP.c -lm -o /opt/rsRNASP/rsRNASP

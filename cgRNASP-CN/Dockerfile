@@ -7,5 +7,6 @@ RUN apt-get update \
  && rm -rf /var/lib/apt/lists/*
 
 COPY cgRNASP-CN opt/cgRNASP-CN
+COPY bin/cgRNASP-CN /usr/bin/cgRNASP-CN
 
-RUN gcc /opt/cgRNASP-CN/cgRNASP-CN.c -lm -o /usr/bin/cgRNASP-CN
+RUN gcc /opt/cgRNASP-CN/cgRNASP-CN.c -lm -o /opt/cgRNASP-CN/cgRNASP-CN
