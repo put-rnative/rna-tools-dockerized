@@ -1,19 +1,20 @@
 @echo off
 title To jest podejscie testowe
 set arg1=%1
-::set arg2=%2
+set arg2=%2
 
 ::jakby zwracal ze costam costam /bash bad interpreter:
 ::sed -i -e 's/\r$//' cgRNASP
 
-::echo %arg1%
-::docker cp casp-15-pdbs affectionate_chebyshev:/opt/cgRNASP/
-::docker exec --workdir /home/cgRNASP/cgRNASP/ laughing_lamport tar xvf casp-15-pdbs.tar.gz
+echo %arg1%
+echo %arg2%
+::docker cp casp-15-pdbs goofy_kilby:/opt/rsRNASP/
+::docker exec --workdir /home/cgRNASP/rsRNASP/ laughing_lamport tar xvf casp-15-pdbs.tar.gz
 ::docker exec --workdir /home/cgRNASP/cgRNASP/ laughing_lamport ls
 ::R1107/pdb <-- folder z tymi tymi
 
 ::docker cp test.pdb laughing_lamport:/home/cgRNASP/cgRNASP/
-docker exec -i --workdir /usr affectionate_chebyshev cgRNASP /opt/cgRNASP/casp-15-pdbs/%arg1%/pdb/ >cgrnasdp_%arg1%.csv
+docker exec -i --workdir /usr goofy_kilby rsRNASP /opt/rsRNASP/casp-15-pdbs/%arg1%/pdb/%arg2% >rsrnasp.txt 
 ::docker exec -i --workdir /home/cgRNASP/cgRNASP/%arg2%  laughing_lamport ls
 ::docker exec -i --workdir /home/cgRNASP/cgRNASP/%arg2%  laughing_lamport cat energy_list.txt >cgrnasp.txt
 
