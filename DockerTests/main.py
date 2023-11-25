@@ -96,8 +96,27 @@ def csv_cgrnasp_cn():
         komenda = "cgrnaspcn.bat" + " "+f
         os.system(komenda)
     print("number of files: "+ str(i))
+def csv_cgrnasp_c():
+    i=0
+    for f in os.listdir("casp-15-pdbs/"):
+        # if os.path.isfile(f):
+        print(f)
+        i+=1
+        komenda = "cgrnaspc.bat" + " "+f
+        os.system(komenda)
+    print("number of files: "+ str(i))
+def csv_cgrnasp_pc():
+    i=0
+    for f in os.listdir("casp-15-pdbs/"):
+        # if os.path.isfile(f):
+        print(f)
+        i+=1
+        komenda = "cgrnasppc.bat" + " "+f
+        os.system(komenda)
+    print("number of files: "+ str(i))
 # csv_rsrnasp("107")
-csv_cgrnasp_cn()
+csv_cgrnasp_pc()
+
 # csv_rsrnasp("108")
 # csv_rsrnasp("116")
 # csv_rsrnasp("117")
