@@ -1,14 +1,23 @@
+lociPARSE:
+DOESN'T WORK
+
 cgRNASP:
-WORKS
+WORKS, calculated 
 
 cgRNASP-CN:
-WORKS
+WORKS, calculated
+
+cgRNASP-C:
+WORKS, calculated
+
+cgRNASP-PC:
+WORKS, calculated
 
 rsRNASP:
-WORKS
+WORKS, calculated
 
 3dRNAscore:
-WORKS
+WORKS, calculated
 
 RNA3DCC:
 WORKS
@@ -20,7 +29,7 @@ RNA-BRiQ-main:
 DOESN'T WORK
 
 dfire_rna-master:
-WORKS
+WORKS, calculated
 
 ARES:
 webserwer, go to page and upload a PDB file to get results.
