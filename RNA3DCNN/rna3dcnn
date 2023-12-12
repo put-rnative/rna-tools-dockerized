@@ -1,2 +1,0 @@
-#! /bin/bash
-exec python /opt/RNA3DCNN/Main.py $@

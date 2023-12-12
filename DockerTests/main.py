@@ -114,20 +114,39 @@ def csv_cgrnasp_pc():
         komenda = "cgrnasppc.bat" + " "+f
         os.system(komenda)
     print("number of files: "+ str(i))
-# csv_rsrnasp("107")
-csv_cgrnasp_pc()
 
-# csv_rsrnasp("108")
-# csv_rsrnasp("116")
-# csv_rsrnasp("117")
-# csv_rsrnasp("126")
-# csv_rsrnasp("128")
-# csv_rsrnasp("136")
-# csv_rsrnasp("138")
-# csv_rsrnasp("149")
-# csv_rsrnasp("156")
-# csv_rsrnasp("189")
-# csv_rsrnasp("190")
+def rasp(numerPliku):
+    i =0
+    nazwa_csv = "rasp"+numerPliku+".csv"
+    folder_w_maszynie = "R1"+numerPliku+"/pdb"
+    for f in os.listdir("casp-15-pdbs/"+folder_w_maszynie):
+        # if os.path.isfile(f):
+        i+=1
+        komenda = "rasp.bat" + " "+f+" "+folder_w_maszynie
+        os.system(komenda)
+        val = ""
+        with open("rasp.txt", "r") as myfile:
+            val = myfile.read()
+        with open(nazwa_csv, "a") as myfile:
+            myfile.write(val)
+        with open("rasp.txt", "w") as myfile:
+            myfile.write("")
+    print("number of files: "+ str(i))
+
+rasp("107")
+#csv_cgrnasp_pc()
+
+rasp("108")
+rasp("116")
+rasp("117")
+rasp("126")
+rasp("128")
+rasp("136")
+rasp("138")
+rasp("149")
+rasp("156")
+rasp("189")
+rasp("190")
 
 
 # komenda = "cgrnasp.bat" + " t R1107/pdb "
