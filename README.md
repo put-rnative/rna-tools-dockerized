@@ -29,7 +29,7 @@ WORKS, calculated
 WORKS, calculated
 
 rasp-fd-1.0:
-WORKS, but with changes to code (env variable changed to just a string added by hand)
+WORKS, calculated,  but with minor changes to code (env variable with path on machine changed to just a string added by hand)
 
 dfire_rna-master:
 WORKS, calculated
