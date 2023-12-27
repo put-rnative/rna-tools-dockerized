@@ -18,5 +18,7 @@ In our work, the evaluation of an RNA structure is divided into the assessment o
 For example:<br />
 python Main.py -pl pdblist -model RNA3DCNN_MD.hdf5 -local 1<br />
 
+python Main.py -pl pdblist -model RNA3DCNN_MD.hdf5 -local 0 >R1107_rna3dcnn.txt
+
 The command above will assess RNAs in pdblist using RNA3DCNN_MD CNN model, and print scores of each nucleotide and the total scores of each RNA.<br />
 It is very easy for you to read the Main.py and change the form of output.
