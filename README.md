@@ -1,5 +1,5 @@
 lociPARSE:
-DOESN'T WORK
+WORKS
 
 ARES:
 webserwer, go to page and upload a PDB file to get results.

@@ -45,3 +45,8 @@ Instructions for running lociPARSE:
 - Training set and test set of 30 independent RNAs were taken from [trRosettaRNA](https://yanglab.qd.sdu.edu.cn/trRosettaRNA/benchmark/).
 - CASP15 experimental strctures and all submiited predictions were downloaded from [CASP15](https://predictioncenter.org/download_area/CASP15/). 
 - 60 non-redundant targets for TS60 validation set were curated from [PDB](https://www.rcsb.org).
+
+
+ORYGINALNY YAML MIAŁ TO ZAMIAST PYTORCZA
+  #- pytorch=1.12.0=py3.10_cuda11.6_cudnn8.3.2_0
+  #-win-64/pytorch-1.12.0-py3.10_cuda11.6_cudnn8_0

@@ -35,8 +35,8 @@ def main():
     
     #===================================================
     restore_path = "Model/QAmodel.pt"
-
-    model.load_state_dict(torch.load(restore_path))
+    #model.load_state_dict(torch.load(restore_path)) #this was the original code
+    model.load_state_dict(torch.load(restore_path,map_location='cuda:0'))
     print(f"Model loaded for inference = {restore_path}")
 
     model = model.to(device)
