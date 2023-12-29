@@ -85,6 +85,11 @@ def test(model, loader_test):
             
             for i in range(pNuL.shape[0]):
                 wfile.write(str(i+1) + "\t{:.2f}".format(pNuL[i]) + "\n")
+        #different result saving changed for convinience
+        result_path_csv = pred_path.replace('Prediction/', '')
+                
+        with open("lociparse.csv","a") as afile:
+            afile.write(result_path_csv+".pdb\t{:.2f}".format(pMoL) + "\n")
 
 if __name__ == "__main__":
     main()
