@@ -1,6 +1,8 @@
 ARES:
-webserwer, go to page and upload a PDB file to get results.
+we have an image https://hub.docker.com/r/adamczykb/ares_qa, however it doesn't work with my Docker on Windows
+webserwer (DOESN'T WORK), go to page and upload a PDB file to get results.
  https://drorlab.stanford.edu/ares.html
+ 
 
 RNA-BRiQ-main:
 DOESN'T WORK
