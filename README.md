@@ -1,6 +1,6 @@
 ARES:
-we have an image https://hub.docker.com/r/adamczykb/ares_qa, however it doesn't work with my Docker on Windows
-webserwer (DOESN'T WORK), go to page and upload a PDB file to get results.
+we have an image https://hub.docker.com/r/adamczykb/ares_qa, however it doesn't work with my Docker on Windows.
+Webserwer (DOESN'T WORK), go to page and upload a PDB file to get results.
  https://drorlab.stanford.edu/ares.html
  
 
@@ -9,7 +9,7 @@ DOESN'T WORK
 
 
 lociPARSE:
-WORKS, calculated
+WORKS, calculated, with minor changes to code (added ",map_location='cuda:0'" to torch.load() call)
 
 cgRNASP:
 WORKS, calculated 
