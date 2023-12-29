@@ -1,6 +1,3 @@
-lociPARSE:
-WORKS
-
 ARES:
 webserwer, go to page and upload a PDB file to get results.
  https://drorlab.stanford.edu/ares.html
@@ -9,6 +6,8 @@ RNA-BRiQ-main:
 DOESN'T WORK
 
 
+lociPARSE:
+WORKS, calculated
 
 cgRNASP:
 WORKS, calculated 
