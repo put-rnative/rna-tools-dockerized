@@ -133,6 +133,24 @@ def rasp(numerPliku):
             myfile.write("")
     print("number of files: "+ str(i))
 
+
+def ares(numerPliku):
+    i =0
+    nazwa_csv = "ares/ares.csv"
+    for f in os.listdir("reduce/reduce/"):
+        # if os.path.isfile(f):
+        i+=1
+        komenda = "ares.bat" + " "+f
+        os.system(komenda)
+        val = ""
+        with open("ares/ares.txt", "r") as myfile:
+            val = myfile.read()
+        with open(nazwa_csv, "a") as myfile:
+            myfile.write(val)
+        with open("ares/ares.txt", "w") as myfile:
+            myfile.write("")
+    print("number of files: "+ str(i))
+
 rasp("107")
 #csv_cgrnasp_pc()
 

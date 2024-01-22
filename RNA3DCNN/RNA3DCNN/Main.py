@@ -62,8 +62,8 @@ if __name__ == '__main__':
         score_residue = cnn_model.predict(pixels)
 
         if local_assessment:
-            print ("Scores for each nucleotide in " + RNA + ":")
+            #print ("Scores for each nucleotide in " + RNA + ":")
             print (score_residue)
-            print ("Total score for " + RNA + " is ", np.sum(score_residue))
+            #print ("Total score for " + RNA + " is ", np.sum(score_residue))
         else:
             print ("Total score for " + RNA + " is ", np.sum(score_residue))
