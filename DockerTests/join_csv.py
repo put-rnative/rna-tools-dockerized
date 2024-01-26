@@ -49,25 +49,34 @@ def left_join_csv(destination,source):
     dffinal.to_csv(destination)
     print(dffinal)
 def left_join_dataframe(df,source):
-
     df2 = pd.read_csv(source,sep="	", header=None)
     df2.columns=['ID','lociPARSE']
     dffinal = pd.merge(df, df2, on = 'ID', how='left')
     # print(dffinal)
     return dffinal
 
-# join_standard_csv("r1107","107")
-join_standard_csv("r1108","108")
-join_standard_csv("r1116","116")
-join_standard_csv("r1117","117")
-join_standard_csv("r1126","126")
-join_standard_csv("r1128","128")
-join_standard_csv("r1136","136")
-join_standard_csv("r1138","138")
-join_standard_csv("r1149","149")
-join_standard_csv("r1156","156")
-join_standard_csv("r1189","189")
-join_standard_csv("r1190","190")
+def left_join_csvs(csv_source,csv_to_join,seperator1,seperator2,newColname):
+    df1 = pd.read_csv(csv_source,sep=seperator1)
+    df2 = pd.read_csv(csv_to_join,sep=seperator2, header=None)
+    df2.columns=['ID',newColname]
+    dffinal = pd.merge(df1, df2, on = 'ID', how='left')
+    ddropped = dffinal.drop(dffinal.columns[[0]],axis = 1)
+    # print(dffinal)
+    name = csv_source.split(".")
+    ddropped.to_csv(name[0]+'_2.csv')
+
+left_join_csvs("r1107_merged.csv","ares_final.csv",",",",","ares")
+left_join_csvs("r1108_merged.csv","ares_final.csv",",",",","ares")
+left_join_csvs("r1116_merged.csv","ares_final.csv",",",",","ares")
+left_join_csvs("r1117_merged.csv","ares_final.csv",",",",","ares")
+left_join_csvs("r1126_merged.csv","ares_final.csv",",",",","ares")
+left_join_csvs("r1128_merged.csv","ares_final.csv",",",",","ares")
+left_join_csvs("r1136_merged.csv","ares_final.csv",",",",","ares")
+left_join_csvs("r1138_merged.csv","ares_final.csv",",",",","ares")
+left_join_csvs("r1149_merged.csv","ares_final.csv",",",",","ares")
+left_join_csvs("r1156_merged.csv","ares_final.csv",",",",","ares")
+left_join_csvs("r1189_merged.csv","ares_final.csv",",",",","ares")
+left_join_csvs("r1190_merged.csv","ares_final.csv",",",",","ares")
 
 # left_join_csv("r1107_merged.csv","lociparse.csv")
 # left_join_csv("r1108_merged.csv","lociparse.csv")

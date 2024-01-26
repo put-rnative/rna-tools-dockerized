@@ -17,5 +17,13 @@ def rna3dcnn_folder(folder):
         print(f)
         rna3dcnn_to_csv(folder+"/"+f)
 
+def ares_to_csv(filename,filename_new):
+    csv = open(filename_new, "a")
+    with open(filename) as file:
+        for line in file:
+            l = line.split(",")
+            csv.write(l[1]+","+l[0]+"\n")
+
+
 #rna3dcnn_to_csv("R1108_rna3dcnnMC.txt")
-rna3dcnn_folder("rna3DCNN")
+ares_to_csv("aresresult1138.csv","ares_final.csv")
