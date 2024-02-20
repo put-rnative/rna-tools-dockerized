@@ -1,0 +1,4 @@
+R1190TS239_5.pdb
+    >strand_0
+seq GCGUACAGGGAACACGCAACCCCGAAGGAUCGGGGAAGGGACGUCGCCAGGGAGGCGAUUCCAUCAGGAUGAUGACGAGGGACUGAAGAGUGGGCGGGGUAAUACCCCGCCCCUUUUU
+cWW (((((.......))))).(((..((....))..)))..(.(.((((((.....)))))).))......................((((.(.((((((((.....)))))))).)))))

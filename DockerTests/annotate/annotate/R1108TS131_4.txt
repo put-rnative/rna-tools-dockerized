@@ -1,0 +1,4 @@
+R1108TS131_4.pdb
+    >strand_0
+seq GGGGGCCACAGCAGAAGCGUUCACGUCGCGGCCCCUGUCAGCCAUUGCACUCCGGCUGCGAAUUCUGCU
+cSH ...............................()....................................

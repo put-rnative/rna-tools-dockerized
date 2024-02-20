@@ -1,0 +1,5 @@
+R1117TS091_1.pdb
+    >strand_0
+seq UUGGGUUCCCUCACCCCAAUCAUAAAAAGG
+cWH (.)...........................
+cHH ..........................()..

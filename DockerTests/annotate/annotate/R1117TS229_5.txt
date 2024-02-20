@@ -1,0 +1,5 @@
+R1117TS229_5.pdb
+    >strand_0
+seq UUGGGUUCCCUCACCCCAAUCAUAAAAAGG
+cWW .(.(((..[[[..))).).........]]]
+cSW .....(........(........).)....

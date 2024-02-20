@@ -1,0 +1,4 @@
+R1156TS229_4.pdb
+    >strand_0
+seq GGAGCAUCGUGUCUCAAGUGCUUCACGGUCACAAUAUACCGUUUCGUCGGGUGCGUGGCAAUUCGGUGCACAUCAUGUCUUUCGUGGCUGGUGUGGCUCCUCAAGGUGCGAGGGGCAAGUAUAGAGCAGAGCUCC
+cWW ((((((....(.(((..........((((........))))...........................(((((((.(.(......).))))))))(((((((.......))))))).......))).).))))))

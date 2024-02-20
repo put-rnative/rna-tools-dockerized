@@ -1,0 +1,5 @@
+R1190TS125_4.pdb
+    >strand_0
+seq GCGUACAGGGAACACGCAACCCCGAAGGAUCGGGGAAGGGACGUCGCCAGGGAGGCGAUUCCAUCAGGAUGAUGACGAGGGACUGAAGAGUGGGCGGGGUAAUACCCCGCCCCUUUUU
+cWW ((((.........))))..((((((....))))))...(((.((((((.....))))))))).((((.(..........)..))))((((.(((((((((...)))))))))))))..
+tSH .....(.)................................................................(.)...........................................

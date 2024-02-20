@@ -1,0 +1,5 @@
+R1190TS232_2.pdb
+    >strand_0
+seq GCGUACAGGGAACACGCAACCCCGAAGGAUCGGGGAAGGGACGUCGCCAGGGAGGCGAUUCCAUCAGGAUGAUGACGAGGGACUGAAGAGUGGGCGGGGUAAUACCCCGCCCCUUUUU
+cWW ((((.......))))....(((((......))))).((......((((.....))))....((((.....))))........)).(((((.((((((((.....)))))))).)))))
+cSH .................................................()...............()..................................................

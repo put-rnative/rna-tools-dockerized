@@ -1,0 +1,4 @@
+R1107TS131_3.pdb
+    >strand_0
+seq GGGGGCCACAGCAGAAGCGUUCACGUCGCAGCCCCUGUCAGCCAUUGCACUCCGGCUGCGAAUUCUGCU
+cHW ..().................................................................

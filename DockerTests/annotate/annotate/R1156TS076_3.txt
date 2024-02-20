@@ -1,0 +1,4 @@
+R1156TS076_3.pdb
+    >strand_0
+seq GGAGCAUCGUGUCUCAAGUGCUUCACGGUCACAAUAUACCGUUUCGUCGGGUGCGUGGCAAUUCGGUGCACAUCAUGUCUUUCGUGGCUGGUGUGGCUCCUCAAGGUGCGAGGGGCAAGUAUAGAGCAGAGCUCC
+cWW (((((.((.((.(((.(((((((.((((((.....).)))))..((((((((((...)).))))))))(((((((.((((....)))))))))))((((((((.....)))))))))))))))))))))))))))

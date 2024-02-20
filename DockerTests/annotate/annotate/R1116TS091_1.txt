@@ -1,0 +1,5 @@
+R1116TS091_1.pdb
+    >strand_0
+seq CGCCCGGAUAGCUCAGUCGGUAGAGCAGCGGCUAAAACAGCUCUGGGGUUGUACCCACCCCAGAGGCCCACGUGGCGGCUAGUACUCCGGUAUUGCGGUACCCUUGUACGCCUGUUUUAGCCGCGGGUCCAGGGUUCAAGUCCCUGUUCGGGCGCCA
+cHH .....................()......................................................................................................................................
+tSH .......()................................................................................................................................................()..

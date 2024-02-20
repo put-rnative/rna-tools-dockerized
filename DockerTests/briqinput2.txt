@@ -1,0 +1,5 @@
+pdb R1107TS029_1.pdb
+seq GGGGGCCACAGCAGAAGCGUUCACGUCGCAGCCCCUGUCAGCCAUUGCACUCCGGCUGCGAAUUCUGCU
+sec .........((((((..(.(......))..........(.(.(..........).).).....))))))
+nwc ................(............................................).......
+fixed 

@@ -1,0 +1,6 @@
+R1117TS185_4.pdb
+    >strand_0
+seq UUGGGUUCCCUCACCCCAAUCAUAAAAAGG
+cWW (((((...[[[..).))))........]]]
+cSH ()............................
+tSW ..({[...............)}..].....

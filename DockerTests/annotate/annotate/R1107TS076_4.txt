@@ -1,0 +1,5 @@
+R1107TS076_4.pdb
+    >strand_0
+seq GGGGGCCACAGCAGAAGCGUUCACGUCGCAGCCCCUGUCAGCCAUUGCACUCCGGCUGCGAAUUCUGCU
+cWW .........((((((((((....)))(((((((...((((.....)).))...)))))))..)))))))
+tSH ...................(.)...............................................

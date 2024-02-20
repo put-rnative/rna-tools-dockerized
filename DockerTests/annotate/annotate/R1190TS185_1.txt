@@ -1,0 +1,4 @@
+R1190TS185_1.pdb
+    >strand_0
+seq GCGUACAGGGAACACGCAACCCCGAAGGAUCGGGGAAGGGACGUCGCCAGGGAGGCGAUUCCAUCAGGAUGAUGACGAGGGACUGAAGAGUGGGCGGGGUAAUACCCCGCCCCUUUUU
+cWW (((...........)))..(((((......))))).......((((((.....))))))...........................(....((((((((.....))))))))....).

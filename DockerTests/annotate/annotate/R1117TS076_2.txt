@@ -1,0 +1,5 @@
+R1117TS076_2.pdb
+    >strand_0
+seq UUGGGUUCCCUCACCCCAAUCAUAAAAAGG
+cWW ((((((......)))).))((.......))
+tSW ......................(.).....

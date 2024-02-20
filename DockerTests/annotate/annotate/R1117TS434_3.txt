@@ -1,0 +1,5 @@
+R1117TS434_3.pdb
+    >strand_0
+seq UUGGGUUCCCUCACCCCAAUCAUAAAAAGG
+cWW (((((.........)))))((.......))
+tSH ......................(.).....

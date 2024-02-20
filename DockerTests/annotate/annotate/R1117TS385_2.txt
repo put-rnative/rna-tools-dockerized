@@ -1,0 +1,6 @@
+R1117TS385_2.pdb
+    >strand_0
+seq UUGGGUUCCCUCACCCCAAUCAUAAAAAGG
+cWW (((.............)))((.......))
+tWH ......................(..)....
+tSH ...(......(.).)......(.....)..

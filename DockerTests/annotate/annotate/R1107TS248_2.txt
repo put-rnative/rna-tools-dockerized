@@ -1,0 +1,4 @@
+R1107TS248_2.pdb
+    >strand_0
+seq GGGGGCCACAGCAGAAGCGUUCACGUCGCAGCCCCUGUCAGCCAUUGCACUCCGGCUGCGAAUUCUGCU
+cWW ((((((((((((((((...))).))))))))))))).((((.(((((((.(...).))).)))))))).

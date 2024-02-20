@@ -1,0 +1,5 @@
+R1107TS235_5.pdb
+    >strand_0
+seq GGGGGCCACAGCAGAAGCGUUCACGUCGCAGCCCCUGUCAGCCAUUGCACUCCGGCUGCGAAUUCUGCU
+cWW .........((((((.........(((((((((..((.((.....))))....))))))).))))))))
+cSH ........................................()...........................

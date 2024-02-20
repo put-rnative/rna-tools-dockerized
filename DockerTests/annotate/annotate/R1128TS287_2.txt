@@ -1,0 +1,5 @@
+R1128TS287_2.pdb
+    >strand_0
+seq GGAAUAUCGUCAUGGUGAUUCGUCACCAUGAGGCUAGAUCUCAUAUCUAGCGCUUUCGAGCGCUAGAGUCCUUAUCUAGCCGGUUUAUACUUUCGAGUGUGAACCCGAUAUUCCGCGGAUCACUAUGAGUCGUUCGCGGCUCAUAGUCCGGCUCAAAGGACAUCAUGGCCUGUUCGCAGGUUGUGAUUAUGAGUGAGCCGGGUAAGGCAUACCGUUCGCGGUAUGUCUUACGAUCCGC
+cWW ((((((((((((((((((....)))))))))((((((........(((((((((....)))))))))........))))))(((((((((((..))))))))))))))))))))(((((((((((((((.((....)).))))))))((((((((......(((((((((((....)))))))))))......))))))))((((((((((((......)))))))))))))))))))
+cSH .....................................................................................................................................................................................................................()..................()...

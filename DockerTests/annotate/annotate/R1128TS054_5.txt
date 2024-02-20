@@ -1,0 +1,4 @@
+R1128TS054_5.pdb
+    >strand_0
+seq GGAAUAUCGUCAUGGUGAUUCGUCACCAUGAGGCUAGAUCUCAUAUCUAGCGCUUUCGAGCGCUAGAGUCCUUAUCUAGCCGGUUUAUACUUUCGAGUGUGAACCCGAUAUUCCGCGGAUCACUAUGAGUCGUUCGCGGCUCAUAGUCCGGCUCAAAGGACAUCAUGGCCUGUUCGCAGGUUGUGAUUAUGAGUGAGCCGGGUAAGGCAUACCGUUCGCGGUAUGUCUUACGAUCCGC
+cWW ((((((((((((((((((....)))))))))(((((((((((((.(((((((((....))))))))).)))))))))))))((((((((((....)))))))))))))))))))((((((((((((((((((....)))))))))))((((((((((....(((((((((((....)))))))))))....))))))))))(((((((((((((....))))))))))))))))))))

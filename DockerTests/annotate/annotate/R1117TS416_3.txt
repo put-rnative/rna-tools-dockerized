@@ -1,0 +1,6 @@
+R1117TS416_3.pdb
+    >strand_0
+seq UUGGGUUCCCUCACCCCAAUCAUAAAAAGG
+cWW (((((...[[[...)))))........]]]
+cSH ....................()........
+tSW ....(..................)......
