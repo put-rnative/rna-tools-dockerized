@@ -12,8 +12,12 @@ set arg1=%1
 ::docker exec --workdir /home/cgRNASP/cgRNASP/ laughing_lamport ls
 ::R1107/pdb <-- folder z tymi tymi
 
-::docker cp test.pdb laughing_lamport:/home/cgRNASP/cgRNASP/
-docker exec -i --workdir /usr funny_poincare cgRNASP-PC /opt/cgRNASP/casp-15-pdbs/%arg1%/pdb/ >cgrnasdppc_%arg1%.csv
+::docker cp randstr focused_easley:/home/cgRNASP/cgRNASP/
+docker exec -i --workdir /usr focused_easley cgRNASP-PC /opt/cgRNASP/randstr/decoys/%arg1%/ >cgrnasp_pc_%arg1%.csv
+
+::docker exec -i --workdir /usr funny_poincare cgRNASP-PC /opt/cgRNASP/casp-15-pdbs/%arg1%/pdb/ >cgrnasdppc_%arg1%.csv
+
+
 ::docker exec -i --workdir /home/cgRNASP/cgRNASP/%arg2%  laughing_lamport ls
 ::docker exec -i --workdir /home/cgRNASP/cgRNASP/%arg2%  laughing_lamport cat energy_list.txt >cgrnasp.txt
 

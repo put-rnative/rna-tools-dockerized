@@ -7,13 +7,13 @@ set arg1=%1
 ::sed -i -e 's/\r$//' cgRNASP
 
 ::echo %arg1%
-::docker cp casp-15-pdbs peaceful_swirles:/opt/cgRNASP-CN/
+::docker cp randstr angry_colden:/opt/cgRNASP-CN/
 ::docker exec --workdir /home/cgRNASP/cgRNASP/ laughing_lamport tar xvf casp-15-pdbs.tar.gz
 ::docker exec --workdir /home/cgRNASP/cgRNASP/ laughing_lamport ls
 ::R1107/pdb <-- folder z tymi tymi
 
 ::docker cp test.pdb laughing_lamport:/home/cgRNASP/cgRNASP/
-docker exec -i --workdir /usr peaceful_swirles cgRNASP-CN /opt/cgRNASP-CN/casp-15-pdbs/%arg1%/pdb/ >cgrnasp_cn_%arg1%.csv
+docker exec -i --workdir /usr angry_colden cgRNASP-CN /opt/cgRNASP-CN/randstr/decoys/%arg1%/ >cgrnasp_cn_%arg1%.csv
 ::docker exec -i --workdir /home/cgRNASP/cgRNASP/%arg2%  laughing_lamport ls
 ::docker exec -i --workdir /home/cgRNASP/cgRNASP/%arg2%  laughing_lamport cat energy_list.txt >cgrnasp.txt
 

@@ -24,6 +24,27 @@ def csv_dfire(numerPliku):
             myfile.write("")
     print("number of files: "+ str(i))
 
+def csv_dfireFolder(folder):
+    
+    for d in os.listdir(folder):
+        print("folder " + folder + "d: "+ d)
+        i =0
+        nazwa_csv = "dfire_"+d+".csv"
+        folder_w_maszynie = folder+"/"+d
+        for f in os.listdir(folder_w_maszynie):
+            # if os.path.isfile(f):
+            i+=1
+            komenda = "test.bat" + " "+f+" "+folder_w_maszynie
+            os.system(komenda)
+            val = ""
+            with open("dfire.txt", "r") as myfile:
+                val = myfile.read()
+            with open(nazwa_csv, "a") as myfile:
+                myfile.write(val)
+            with open("dfire.txt", "w") as myfile:
+                myfile.write("")
+        print("number of files: "+ str(i))
+
 def csv_3drna(numerPliku):
     i =0
     nazwa_csv = "3drna"+numerPliku+".csv"
@@ -41,6 +62,30 @@ def csv_3drna(numerPliku):
         with open("3dRNA.txt", "w") as myfile:
             myfile.write("")
     print("number of files: "+ str(i))
+
+def csv_3drnaFolder(folder):
+    
+    for d in os.listdir(folder):
+        print("folder " + folder + "d: "+ d)
+        i =0
+        nazwa_csv = "3dRNA"+d+".csv"
+        folder_w_maszynie = folder+"/"+d
+        for f in os.listdir(folder_w_maszynie):
+            # if os.path.isfile(f):
+
+            #check if file is pdb
+
+            i+=1
+            komenda = "3dRNA.bat" + " "+f+" "+folder_w_maszynie
+            os.system(komenda)
+            val = ""
+            with open("3dRNA.txt", "r") as myfile:
+                val = myfile.read()
+            with open(nazwa_csv, "a") as myfile:
+                myfile.write(val)
+            with open("3dRNA.txt", "w") as myfile:
+                myfile.write("")
+        print("number of files: "+ str(i))
 
 # def csv_cgrnasp(numerPliku):
 #     i =0
@@ -87,9 +132,56 @@ def csv_rsrnasp(numerPliku):
         with open("rsrnasp.txt", "w") as myfile:
             myfile.write("")
     print("number of files: "+ str(i))  
+
+def csv_rsrnaspFolder(folder):
+    print("number of files: "+ str(i))  
+    for d in os.listdir(folder):
+        print("folder " + folder + "d: "+ d)
+        i =0
+        nazwa_csv = "rsrnasp_"+d+".csv"
+        folder_w_maszynie = folder+"/"+d
+        for f in os.listdir(folder_w_maszynie):
+            # if os.path.isfile(f):
+
+            #check if file is pdb
+
+            i+=1
+            komenda = "rsrnasp.bat" + " "+folder_w_maszynie+" "+f
+            os.system(komenda)
+            val = ""
+            with open("rsrnasp.txt", "r") as myfile:
+                val = myfile.read()
+            with open(nazwa_csv, "a") as myfile:
+                myfile.write(val)
+            with open("rsrnasp.txt", "w") as myfile:
+                myfile.write("")
+        print("number of files: "+ str(i))
+
+
+
+
+def csv_cgrnasp_Folder(folder):
+    i=0
+    for f in os.listdir(folder):
+        # if os.path.isfile(f):
+        print(f)
+        i+=1
+        komenda = "cgrnasp.bat" + " "+f
+        os.system(komenda)
+    print("number of files: "+ str(i))
 def csv_cgrnasp_cn():
     i=0
     for f in os.listdir("casp-15-pdbs/"):
+        # if os.path.isfile(f):
+        print(f)
+        i+=1
+        komenda = "cgrnaspcn.bat" + " "+f
+        os.system(komenda)
+    print("number of files: "+ str(i))
+
+def csv_cgrnasp_cnFolder(folder):
+    i=0
+    for f in os.listdir(folder):
         # if os.path.isfile(f):
         print(f)
         i+=1
@@ -114,6 +206,27 @@ def csv_cgrnasp_pc():
         komenda = "cgrnasppc.bat" + " "+f
         os.system(komenda)
     print("number of files: "+ str(i))
+
+def csv_cgrnasppc_Folder(folder):
+    i=0
+    for f in os.listdir(folder):
+        # if os.path.isfile(f):
+        print(f)
+        i+=1
+        komenda = "cgrnasppc.bat" + " "+f
+        os.system(komenda)
+    print("number of files: "+ str(i))
+
+def csv_cgrnaspc_Folder(folder):
+    i=0
+    for f in os.listdir(folder):
+        # if os.path.isfile(f):
+        print(f)
+        i+=1
+        komenda = "cgrnaspc.bat" + " "+f
+        os.system(komenda)
+    print("number of files: "+ str(i))
+
 
 def rasp(numerPliku):
     i =0
@@ -151,25 +264,26 @@ def ares(numerPliku):
             myfile.write("")
     print("number of files: "+ str(i))
 
-rasp("107")
-#csv_cgrnasp_pc()
+# rasp("107")
+# #csv_cgrnasp_pc()
 
-rasp("108")
-rasp("116")
-rasp("117")
-rasp("126")
-rasp("128")
-rasp("136")
-rasp("138")
-rasp("149")
-rasp("156")
-rasp("189")
-rasp("190")
+# rasp("108")
+# rasp("116")
+# rasp("117")
+# rasp("126")
+# rasp("128")
+# rasp("136")
+# rasp("138")
+# rasp("149")
+# rasp("156")
+# rasp("189")
+# rasp("190")
 
+csv_3drnaFolder("randstr/decoys")
 
 # komenda = "cgrnasp.bat" + " t R1107/pdb "
 # os.system(komenda)
-# csv_dfire("136")
+#csv_dfire("136")
 # csv_dfire("138")
 # csv_dfire("149")
 # csv_dfire("156")
