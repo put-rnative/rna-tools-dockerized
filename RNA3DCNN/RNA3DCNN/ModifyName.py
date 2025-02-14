@@ -22,7 +22,8 @@ DICT_RES_NAME = {' RA': '  A', ' RG': '  G', ' RU': '  U', ' RC': '  C',
                  'CBV': '  C', 'RA5': '  A', 'RG5': '  G', 'RU5': '  U',
                  'RC5': '  C', 'RA3': '  A', 'RG3': '  G', 'RU3': '  U',
                  'RC3': '  C', 'PPU': '  A', '  N': '  C', ' rA': '  A',
-                 ' rG': '  G', ' rU': '  U', ' rC': '  C', '6IA': '  A'}
+                 ' rG': '  G', ' rU': '  U', ' rC': '  C', '6IA': '  A',
+                 'A': '  A',     'C': '  C',   'G': '  G',   'U': '  U'}
 
 
 def modify_residue_atom_name(residues):
