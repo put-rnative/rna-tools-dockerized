@@ -83,15 +83,13 @@ int main (int argc, char * const argv[]) {
 		strcpy(rasp_c,"all");
 	}
 
-	//if (getenv("RASP") == NULL) {
-	//	std::cerr << "You must set the environment variable 'RASP' according to the instructions in the README.txt file." << std::endl;
-	//	exit(1);
-	//}
-	std::string zmienna = "/home/rasp-fd-1.0/";//added
-	const int dlugosc = zmienna.length();
+	if (getenv("RASP") == NULL) {
+		std::cerr << "You must set the environment variable 'RASP' according to the instructions in the README.txt file." << std::endl;
+		exit(1);
+	}
+	
 	char
-		*env_c = new char[dlugosc + 1];//getenv("RASP");
-	strcpy(env_c,zmienna.c_str());
+		*env_c = getenv("RASP");
 
 	std::string
 		rasp(rasp_c),
