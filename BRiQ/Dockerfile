@@ -5,6 +5,7 @@ RUN apt-get update \
         build-essential \
         cmake \
         make \
+        parallel \
  && rm -rf /var/lib/apt/lists/*
 
 COPY RNA-BRiQ /opt/RNA-BRiQ
