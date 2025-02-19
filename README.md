@@ -29,6 +29,13 @@ WORKS, calculated
 3dRNAscore:
 WORKS, calculated
 
+Docker usage:
+```bash
+# Assuming $pdb is the path to your PDB file:
+docker run --rm -v ${pdb}:/tmp/input.pdb 3drnascore:latest bash -c "perl /opt/3dRNAscore/lib/format.pl /tmp/input.pdb > /tmp/formatted.pdb; 3dRNAscore -s /tmp/formatted.pdb"
+```
+The command mounts your PDB file into the container, formats it using the provided script, and runs the scoring algorithm.
+
 rasp-fd-1.0:
 WORKS, calculated,  but with minor changes to code (env variable with path on machine changed to just a string added by hand)
 
