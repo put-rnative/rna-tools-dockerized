@@ -104,3 +104,17 @@ The command mounts your PDB file into the container and runs the DFIRE-RNA scori
 
 RNA3DCC:
 WORKS, calculated
+
+RNA3DCNN:
+WORKS, calculated
+
+Docker usage:
+```bash
+# Assuming $pdb is the path to your PDB file:
+# Using MD model:
+docker run --rm -v ${pdb}:/tmp/input.pdb rna3dcnn:latest python /opt/RNA3DCNN/Main.py -pn /tmp/input.pdb -model /opt/RNA3DCNN/RNA3DCNN_MD.hdf5 -local 0
+
+# Or using MDMC model:
+docker run --rm -v ${pdb}:/tmp/input.pdb rna3dcnn:latest python /opt/RNA3DCNN/Main.py -pn /tmp/input.pdb -model /opt/RNA3DCNN/RNA3DCNN_MDMC.hdf5 -local 0
+```
+The command mounts your PDB file into the container and runs RNA3DCNN with either the MD or MDMC model.
