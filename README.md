@@ -39,6 +39,13 @@ The command mounts your PDB file into the container, formats it using the provid
 rasp-fd-1.0:
 WORKS, calculated,  but with minor changes to code (env variable with path on machine changed to just a string added by hand)
 
+Docker usage:
+```bash
+# Assuming $pdb is the path to your PDB file:
+docker run --rm -v ${pdb}:/tmp/input.pdb rasp:latest bash -c "rasp_fd -p /tmp/input.pdb"
+```
+The command mounts your PDB file into the container and runs the RASP scoring algorithm.
+
 dfire_rna-master:
 WORKS, calculated
 
