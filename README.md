@@ -5,7 +5,18 @@ Webserwer (DOESN'T WORK), go to page and upload a PDB file to get results.
  
 
 RNA-BRiQ-main:
-DOESN'T WORK
+WORKS, calculated
+
+Docker usage:
+```bash
+# Assuming $pdb is the path to your PDB file:
+docker run --rm -v ${pdb}:/tmp/input.pdb briq:latest bash -c "BRiQ_AssignSS /tmp/input.pdb /tmp/input.briq; sed -i '1 i pdb /tmp/input.pdb' /tmp/input.briq; BRiQ_Energy /tmp/input.briq >/dev/null 2>/tmp/output; cat /tmp/output"
+```
+The command:
+1. Mounts your PDB file into the container
+2. Assigns secondary structure using BRiQ_AssignSS
+3. Prepares the input file for energy calculation
+4. Runs BRiQ_Energy and captures the output
 
 
 lociPARSE:
