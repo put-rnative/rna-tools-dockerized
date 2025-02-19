@@ -7,4 +7,3 @@ RUN conda upgrade conda \
         tensorflow
 
 COPY RNA3DCNN /opt/RNA3DCNN
-COPY RNA3DCNN /usr/bin/RNA3DCNN
