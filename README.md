@@ -24,6 +24,13 @@ The command mounts your PDB file into the container and runs the cgRNASP scoring
 cgRNASP-CN:
 WORKS, calculated
 
+Docker usage:
+```bash
+# Assuming $pdb is the path to your PDB file:
+docker run --rm -v ${pdb}:/tmp/input.pdb cgrnasp-cn:latest cgRNASP-CN /tmp
+```
+The command mounts your PDB file into the container and runs the cgRNASP-CN scoring algorithm.
+
 cgRNASP-C:
 WORKS, calculated
 
