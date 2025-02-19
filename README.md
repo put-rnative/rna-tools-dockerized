@@ -22,6 +22,13 @@ The command:
 lociPARSE:
 WORKS, calculated, with minor changes to code (added ",map_location='cuda:0'" to torch.load() call)
 
+Docker usage:
+```bash
+# Assuming $pdb is the path to your PDB file:
+docker run --rm -v ${pdb}:/tmp/input.pdb lociparse:latest lociPARSE /tmp/input.pdb
+```
+The command mounts your PDB file into the container and runs the lociPARSE scoring algorithm.
+
 cgRNASP:
 WORKS, calculated 
 
