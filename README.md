@@ -1,8 +1,24 @@
 ARES:
-we have an image https://hub.docker.com/r/adamczykb/ares_qa, however it doesn't work with my Docker on Windows.
-Webserwer (DOESN'T WORK), go to page and upload a PDB file to get results.
- https://drorlab.stanford.edu/ares.html
- 
+WORKS, calculated
+
+Prerequisites:
+1. Install reduce from https://github.com/rlabduke/reduce
+2. Process your PDB files with reduce before scoring
+
+Docker usage:
+```bash
+# First process your PDB with reduce:
+# Assuming $pdb is the path to your input PDB file and $pdbdir is where to store processed PDBs
+reduce ${pdb} > ${pdbdir}/output.pdb
+
+# Then run ARES in Docker:
+# Assuming $tmpdir points to directory with processed PDBs
+docker run -it --rm -v ${tmpdir}:/tmp/pdb adamczykb/ares_qa:latest bash -c "python3 -m ares.predict /tmp/pdb data/weights.ckpt output.csv -f pdb --nolabels --num_workers=\$(nproc) && cat output.csv"
+```
+The commands:
+1. Process the input PDB file with reduce
+2. Mount the directory with processed PDBs into the container
+3. Run ARES prediction and display the results
 
 RNA-BRiQ-main:
 WORKS, calculated
