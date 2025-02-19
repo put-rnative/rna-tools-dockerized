@@ -42,5 +42,12 @@ WORKS, calculated,  but with minor changes to code (env variable with path on ma
 dfire_rna-master:
 WORKS, calculated
 
+Docker usage:
+```bash
+# Assuming $pdb is the path to your PDB file:
+docker run --rm -v ${pdb}:/tmp/input.pdb dfire-rna:latest bash -c "DFIRE_RNA /tmp/input.pdb"
+```
+The command mounts your PDB file into the container and runs the DFIRE-RNA scoring algorithm.
+
 RNA3DCC:
 WORKS, calculated
