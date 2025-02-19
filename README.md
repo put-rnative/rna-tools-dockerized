@@ -54,6 +54,13 @@ docker run --rm -v ${pdb}:/tmp/input.pdb cgrnasp:latest cgRNASP-PC /tmp
 rsRNASP:
 WORKS, calculated
 
+Docker usage:
+```bash
+# Assuming $pdb is the path to your PDB file:
+docker run --rm -v ${pdb}:/tmp/input.pdb rsrnasp:latest rsRNASP /tmp/input.pdb
+```
+The command mounts your PDB file into the container and runs the rsRNASP scoring algorithm.
+
 3dRNAscore:
 WORKS, calculated
 
