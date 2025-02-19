@@ -14,14 +14,35 @@ WORKS, calculated, with minor changes to code (added ",map_location='cuda:0'" to
 cgRNASP:
 WORKS, calculated 
 
+Docker usage:
+```bash
+# Assuming $pdb is the path to your PDB file:
+docker run --rm -v ${pdb}:/tmp/input.pdb cgrnasp:latest cgRNASP /tmp
+```
+The command mounts your PDB file into the container and runs the cgRNASP scoring algorithm.
+
 cgRNASP-CN:
 WORKS, calculated
 
 cgRNASP-C:
 WORKS, calculated
 
+Docker usage:
+Uses the same Docker image as cgRNASP but with a different command:
+```bash
+# Assuming $pdb is the path to your PDB file:
+docker run --rm -v ${pdb}:/tmp/input.pdb cgrnasp:latest cgRNASP-C /tmp
+```
+
 cgRNASP-PC:
 WORKS, calculated
+
+Docker usage:
+Uses the same Docker image as cgRNASP but with a different command:
+```bash
+# Assuming $pdb is the path to your PDB file:
+docker run --rm -v ${pdb}:/tmp/input.pdb cgrnasp:latest cgRNASP-PC /tmp
+```
 
 rsRNASP:
 WORKS, calculated
