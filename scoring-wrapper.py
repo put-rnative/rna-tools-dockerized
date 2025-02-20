@@ -352,10 +352,10 @@ def main():
                 for pdb_file, method, score in pool.imap_unordered(
                     lambda t: (t[0], t[1], SCORING_FUNCTIONS[t[1]](t[0])), tasks
                 ):
+                    # Update results and checkpoint as soon as each score is ready
+                    results[pdb_file][method] = score
+                    pd.DataFrame.from_dict(results, orient="index").to_csv(checkpoint_file)
                     pbar.update(1)
-                # Update results and checkpoint as soon as each score is ready
-                results[pdb_file][method] = score
-                pd.DataFrame.from_dict(results, orient="index").to_csv(checkpoint_file)
 
     # Create DataFrame and display/save results
     df = pd.DataFrame.from_dict(results, orient="index")
