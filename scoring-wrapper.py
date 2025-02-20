@@ -103,10 +103,10 @@ def _run_cgrnasp(pdb_path: str, executable: str) -> float:
         # Copy PDB file to temp directory
         tmp_pdb = os.path.join(tmpdir, "input.pdb")
         shutil.copy2(pdb_path, tmp_pdb)
-        
+
         # Create temp file for output
         tmp_out = os.path.join(tmpdir, "output.txt")
-        
+
         # Run scoring
         subprocess.run(
             [executable, tmpdir, "1", tmp_out],
@@ -114,7 +114,7 @@ def _run_cgrnasp(pdb_path: str, executable: str) -> float:
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
         )
-        
+
         # Read score
         try:
             with open(tmp_out) as f:
