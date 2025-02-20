@@ -83,6 +83,12 @@ docker run --rm -v ${pdb}:/tmp/input.pdb briq:latest bash -c "BRiQ_AssignSS /tmp
 
 # lociPARSE
 
+lociPARSE (Locality-aware Invariant Point Attention Model for Scoring RNA 3D Structures) is described in:
+
+Tarafder, S., & Bhattacharya, D. (2024). lociPARSE: A Locality-aware Invariant Point Attention Model for Scoring RNA 3D Structures. Journal of Chemical Information and Modeling, 64(22), 8655–8664. https://doi.org/10.1021/acs.jcim.4c01621
+
+Source code: https://github.com/Bhattacharya-Lab/lociPARSE
+
 Docker usage:
 
 ```bash
