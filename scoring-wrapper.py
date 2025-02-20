@@ -15,18 +15,23 @@ def run_command(
     *,
     stdout: Optional[int] = subprocess.PIPE,
     stderr: Optional[int] = subprocess.PIPE,
+    expected_returncode: int = 0,
     **kwargs,
 ) -> subprocess.CompletedProcess:
     """Run command with better error handling"""
     try:
-        return subprocess.run(
+        result = subprocess.run(
             cmd,
             stdout=stdout,
             stderr=stderr,
             text=True,
-            check=True,
             **kwargs,
         )
+        if result.returncode != expected_returncode:
+            raise subprocess.CalledProcessError(
+                result.returncode, cmd, result.stdout, result.stderr
+            )
+        return result
     except subprocess.CalledProcessError as e:
         msg = f"Command failed with exit code {e.returncode}:\n"
         msg += f"Command: {' '.join(cmd)}\n"
@@ -129,6 +134,7 @@ def _run_cgrnasp(pdb_path: str, executable: str) -> float:
         result = run_command(
             [executable, tmpdir, "1", tmp_out],
             cwd=exe_dir,
+            expected_returncode=6,
         )
 
         # Read score
