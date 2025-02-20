@@ -1,7 +1,8 @@
 #! /usr/bin/env python
 import argparse
 import os.path
-from typing import List
+from typing import List, Dict
+import pandas as pd
 
 SCORING_METHODS = [
     "3dRNAscore",
@@ -119,11 +120,18 @@ def main():
     print(f"Processing PDB files: {args.pdb_files}")
 
     # Score each PDB file with selected methods
+    results: Dict[str, Dict[str, float]] = {}
     for pdb_file in args.pdb_files:
-        print(f"\nScoring {pdb_file}:")
+        print(f"\nScoring {pdb_file}...")
+        results[pdb_file] = {}
         for method in methods:
             score = SCORING_FUNCTIONS[method](pdb_file)
-            print(f"{method}: {score:.3f}")
+            results[pdb_file][method] = score
+
+    # Create DataFrame and display results
+    df = pd.DataFrame.from_dict(results, orient='index')
+    print("\nScoring Results:")
+    print(df.round(3))
 
 
 if __name__ == "__main__":
