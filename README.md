@@ -160,6 +160,12 @@ docker run --rm -v ${pdb}:/tmp/input.pdb 3drnascore:latest bash -c "perl /opt/3d
 
 # RASP
 
+RASP (RNA Assessment of Secondary structure Prediction) is an all-atom knowledge-based potential described in:
+
+Capriotti, E., Norambuena, T., Marti-Renom, M. A., & Melo, F. (2011). All-atom knowledge-based potential for RNA structure prediction and assessment. Bioinformatics, 27(8), 1086–1093. https://doi.org/10.1093/bioinformatics/btr093
+
+Source code: http://melolab.org/webrasp/download.php
+
 Docker usage:
 
 ```bash
