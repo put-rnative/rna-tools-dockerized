@@ -41,6 +41,10 @@ If you prefer to use individual scoring methods separately, the following Docker
 
 # ARES
 
+ARES (Atomic Rotationally Equivariant Scorer) is a geometric deep learning method for RNA structure assessment described in:
+
+Townshend, R. J. L., Eismann, S., Watkins, A. M., Rangan, R., Karelina, M., Das, R., & Dror, R. O. (2021). Geometric deep learning of RNA structure. Science, 373(6558), 1047–1051. https://doi.org/10.1126/science.abe5650
+
 Prerequisites:
 
 1. Install reduce from https://github.com/rlabduke/reduce
