@@ -109,25 +109,23 @@ def score_rasp(pdb_path: str) -> float:
 
 def score_rna_briq(pdb_path: str) -> float:
     """Score RNA structure using RNA-BRiQ method"""
-    with tempfile.NamedTemporaryFile(mode='w+', suffix='.txt') as ss_file:
+    with tempfile.NamedTemporaryFile(mode="w+", suffix=".txt") as ss_file:
         # Run BRiQ_AssignSS
-        run_command(
-            ["/opt/RNA-BRiQ/bin/BRiQ_AssignSS", pdb_path, ss_file.name]
-        )
-        
+        run_command(["/opt/RNA-BRiQ/bin/BRiQ_AssignSS", pdb_path, ss_file.name])
+
         # Add pdb path at the beginning of the file
         ss_file.seek(0)
         content = ss_file.read()
         ss_file.seek(0)
         ss_file.write(f"pdb {pdb_path}\n{content}")
         ss_file.flush()
-        
+
         # Run BRiQ_Energy and capture stderr for score
         result = run_command(
             ["/opt/RNA-BRiQ/bin/BRiQ_Energy", ss_file.name],
             stdout=subprocess.DEVNULL,
         )
-        
+
         try:
             score = float(result.stderr.strip())
             return score
