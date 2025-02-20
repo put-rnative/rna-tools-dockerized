@@ -287,6 +287,12 @@ def main():
         type=str,
         metavar="FILE.csv",
     )
+    parser.add_argument(
+        "--checkpoint",
+        help="Load/save partial results from/to this file",
+        type=str,
+        metavar="FILE.csv",
+    )
 
     args = parser.parse_args()
 
@@ -301,25 +307,44 @@ def main():
 
     print(f"Processing PDB files: {args.pdb_files}")
 
-    # Prepare all scoring tasks
-    tasks: List[Tuple[str, str]] = [
-        (pdb_file, method) for pdb_file in args.pdb_files for method in methods
+    # Load existing results if checkpoint exists
+    results: Dict[str, Dict[str, float]] = {pdb_file: {} for pdb_file in args.pdb_files}
+    if args.checkpoint and os.path.exists(args.checkpoint):
+        checkpoint_df = pd.read_csv(args.checkpoint, index_col=0)
+        for pdb_file in args.pdb_files:
+            if pdb_file in checkpoint_df.index:
+                for method in methods:
+                    if method in checkpoint_df.columns and not pd.isna(checkpoint_df.loc[pdb_file, method]):
+                        results[pdb_file][method] = checkpoint_df.loc[pdb_file, method]
+
+    # Filter out already computed tasks
+    tasks = [
+        (pdb_file, method) 
+        for pdb_file in args.pdb_files 
+        for method in methods
+        if method not in results.get(pdb_file, {})
     ]
 
-    # Process files in parallel while preserving order
-    with ThreadPool() as pool:
-        scores = list(
-            tqdm(
-                pool.imap(lambda t: (t[0], t[1], SCORING_FUNCTIONS[t[1]](t[0])), tasks),
-                total=len(tasks),
-                desc="Scoring files",
+    if not tasks:
+        print("\nAll requested scores already computed!")
+    else:
+        # Process remaining files in parallel while preserving order
+        with ThreadPool() as pool:
+            scores = list(
+                tqdm(
+                    pool.imap(lambda t: (t[0], t[1], SCORING_FUNCTIONS[t[1]](t[0])), tasks),
+                    total=len(tasks),
+                    desc="Scoring files",
+                )
             )
-        )
 
-    # Collect results preserving file order
-    results: Dict[str, Dict[str, float]] = {pdb_file: {} for pdb_file in args.pdb_files}
-    for pdb_file, method, score in scores:
-        results[pdb_file][method] = score
+        # Update results with new scores
+        for pdb_file, method, score in scores:
+            results[pdb_file][method] = score
+            
+            # Save checkpoint after each score
+            if args.checkpoint:
+                pd.DataFrame.from_dict(results, orient="index").to_csv(args.checkpoint)
 
     # Create DataFrame and display/save results
     df = pd.DataFrame.from_dict(results, orient="index")
