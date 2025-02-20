@@ -142,12 +142,15 @@ def _run_rna3dcnn(pdb_path: str, model_path: str) -> float:
         [
             "/opt/RNA3DCNN/venv/bin/python",
             "/opt/RNA3DCNN/Main.py",
-            "-pn", pdb_path,
-            "-model", model_path,
-            "-local", "0"
+            "-pn",
+            pdb_path,
+            "-model",
+            model_path,
+            "-local",
+            "0",
         ]
     )
-    
+
     try:
         # Parse "Total score for /path/to/pdb.pdb is X.XXX"
         score = float(result.stdout.strip().split()[-1])
