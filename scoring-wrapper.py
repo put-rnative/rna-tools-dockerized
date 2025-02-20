@@ -1,6 +1,7 @@
 #! /usr/bin/env python3
 import argparse
 import os.path
+import shutil
 import subprocess
 import tempfile
 from multiprocessing.pool import ThreadPool
@@ -96,24 +97,51 @@ def score_rna3dcnn(pdb_path: str) -> float:
     return 0.0
 
 
+def _run_cgrnasp(pdb_path: str, executable: str) -> float:
+    """Helper function to run cgRNASP variants"""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        # Copy PDB file to temp directory
+        tmp_pdb = os.path.join(tmpdir, "input.pdb")
+        shutil.copy2(pdb_path, tmp_pdb)
+        
+        # Create temp file for output
+        tmp_out = os.path.join(tmpdir, "output.txt")
+        
+        # Run scoring
+        subprocess.run(
+            [executable, tmpdir, "1", tmp_out],
+            check=True,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+        )
+        
+        # Read score
+        try:
+            with open(tmp_out) as f:
+                score = float(f.read().strip())
+                return score
+        except (ValueError, IOError) as e:
+            raise RuntimeError(f"Failed to read score from {tmp_out}: {e}")
+
+
 def score_cgrnasp(pdb_path: str) -> float:
     """Score RNA structure using cgRNASP method"""
-    return 0.0
+    return _run_cgrnasp(pdb_path, "/opt/cgRNASP/cgRNASP/cgRNASP")
 
 
 def score_cgrnasp_c(pdb_path: str) -> float:
     """Score RNA structure using cgRNASP-C method"""
-    return 0.0
+    return _run_cgrnasp(pdb_path, "/opt/cgRNASP/cgRNASP-C/cgRNASP-C")
 
 
 def score_cgrnasp_cn(pdb_path: str) -> float:
     """Score RNA structure using cgRNASP-CN method"""
-    return 0.0
+    return _run_cgrnasp(pdb_path, "/opt/cgRNASP-CN/cgRNASP-CN")
 
 
 def score_cgrnasp_pc(pdb_path: str) -> float:
     """Score RNA structure using cgRNASP-PC method"""
-    return 0.0
+    return _run_cgrnasp(pdb_path, "/opt/cgRNASP/cgRNASP-PC/cgRNASP-PC")
 
 
 def score_lociparse(pdb_path: str) -> float:
