@@ -107,12 +107,16 @@ def _run_cgrnasp(pdb_path: str, executable: str) -> float:
         # Create temp file for output
         tmp_out = os.path.join(tmpdir, "output.txt")
 
-        # Run scoring
+        # Get executable directory to use as cwd
+        exe_dir = os.path.dirname(executable)
+
+        # Run scoring from executable directory
         subprocess.run(
             [executable, tmpdir, "1", tmp_out],
             check=True,
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
+            cwd=exe_dir,
         )
 
         # Read score
