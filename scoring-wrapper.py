@@ -28,7 +28,7 @@ def main():
     )
 
     args = parser.parse_args()
-    
+
     # Use all methods if none specified
     methods = args.scoring_method if args.scoring_method else SCORING_METHODS
     print(f"Using scoring methods: {methods}")
