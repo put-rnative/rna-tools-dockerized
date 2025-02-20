@@ -75,11 +75,12 @@ def score_rasp(pdb_path: str) -> float:
         capture_output=True,
         text=True,
         check=True,
+        stderr=subprocess.DEVNULL,
     )
 
     try:
-        # Parse the score from output
-        score = float(result.stdout.strip())
+        # Parse the score from first column of output
+        score = float(result.stdout.strip().split()[0])
         return score
     except (ValueError, IndexError):
         raise RuntimeError(f"Failed to parse RASP output: {result.stdout}")
