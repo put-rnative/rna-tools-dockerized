@@ -324,6 +324,14 @@ def main():
                     ):
                         results[pdb_file][method] = checkpoint_df.loc[pdb_file, method]
 
+    # Count total tasks and already completed ones
+    total_tasks = len(args.pdb_files) * len(methods)
+    completed_tasks = sum(
+        1 for pdb_file in args.pdb_files
+        for method in methods
+        if method in results.get(pdb_file, {})
+    )
+
     # Filter out already computed tasks
     tasks = [
         (pdb_file, method)
@@ -337,13 +345,15 @@ def main():
     else:
         # Process remaining files in parallel, handling results as they complete
         with ThreadPool() as pool:
-            for pdb_file, method, score in tqdm(
-                pool.imap_unordered(
+            with tqdm(
+                total=total_tasks,
+                initial=completed_tasks,
+                desc="Scoring files"
+            ) as pbar:
+                for pdb_file, method, score in pool.imap_unordered(
                     lambda t: (t[0], t[1], SCORING_FUNCTIONS[t[1]](t[0])), tasks
-                ),
-                total=len(tasks),
-                desc="Scoring files",
-            ):
+                ):
+                    pbar.update(1)
                 # Update results and checkpoint as soon as each score is ready
                 results[pdb_file][method] = score
                 pd.DataFrame.from_dict(results, orient="index").to_csv(checkpoint_file)
