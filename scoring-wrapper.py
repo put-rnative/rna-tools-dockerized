@@ -25,31 +25,23 @@ SCORING_METHODS = [
 
 def score_3drnascore(pdb_path: str) -> float:
     """Score RNA structure using 3dRNAscore method"""
-    with tempfile.NamedTemporaryFile(suffix='.pdb') as formatted:
+    with tempfile.NamedTemporaryFile(suffix=".pdb") as formatted:
         # Format the PDB file
         subprocess.run(
-            [
-                "perl", 
-                "/opt/3dRNAscore/lib/format.pl",
-                pdb_path
-            ],
+            ["perl", "/opt/3dRNAscore/lib/format.pl", pdb_path],
             stdout=formatted,
             check=True,
-            text=True
+            text=True,
         )
-        
+
         # Run 3dRNAscore
         result = subprocess.run(
-            [
-                "3dRNAscore",
-                "-s",
-                formatted.name
-            ],
+            ["3dRNAscore", "-s", formatted.name],
             capture_output=True,
             text=True,
-            check=True
+            check=True,
         )
-        
+
         # Parse the score from output
         try:
             # Assuming the score is the last number in the output
