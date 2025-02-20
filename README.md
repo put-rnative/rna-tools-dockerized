@@ -115,6 +115,12 @@ You can substitute `cgRNASP` with `cgRNASP-C` or `cgRNASP-PC` to run a different
 
 # cgRNASP-CN
 
+cgRNASP-CN is a minimal coarse-grained representation-based statistical potential described in:
+
+Song, L., Yu, S., Wang, X., Tan, Y.-L., & Tan, Z.-J. (2022). cgRNASP-CN: A minimal coarse-grained representation-based statistical potential for RNA 3D structure evaluation. Communications in Theoretical Physics, 74(7), 075602. https://doi.org/10.1088/1572-9494/ac7042
+
+Source code: https://github.com/Tan-group/cgRNASP-CN
+
 Docker usage:
 
 ```bash
