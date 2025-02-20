@@ -314,13 +314,15 @@ def main():
         for pdb_file in args.pdb_files:
             if pdb_file in checkpoint_df.index:
                 for method in methods:
-                    if method in checkpoint_df.columns and not pd.isna(checkpoint_df.loc[pdb_file, method]):
+                    if method in checkpoint_df.columns and not pd.isna(
+                        checkpoint_df.loc[pdb_file, method]
+                    ):
                         results[pdb_file][method] = checkpoint_df.loc[pdb_file, method]
 
     # Filter out already computed tasks
     tasks = [
-        (pdb_file, method) 
-        for pdb_file in args.pdb_files 
+        (pdb_file, method)
+        for pdb_file in args.pdb_files
         for method in methods
         if method not in results.get(pdb_file, {})
     ]
@@ -332,7 +334,9 @@ def main():
         with ThreadPool() as pool:
             scores = list(
                 tqdm(
-                    pool.imap(lambda t: (t[0], t[1], SCORING_FUNCTIONS[t[1]](t[0])), tasks),
+                    pool.imap(
+                        lambda t: (t[0], t[1], SCORING_FUNCTIONS[t[1]](t[0])), tasks
+                    ),
                     total=len(tasks),
                     desc="Scoring files",
                 )
@@ -341,7 +345,7 @@ def main():
         # Update results with new scores
         for pdb_file, method, score in scores:
             results[pdb_file][method] = score
-            
+
             # Save checkpoint after each score
             if args.checkpoint:
                 pd.DataFrame.from_dict(results, orient="index").to_csv(args.checkpoint)
