@@ -48,7 +48,8 @@ SCORING_METHODS = [
     "DFIRE",
     "RASP",
     "RNA-BRiQ",
-    "RNA3DCNN",
+    "RNA3DCNN_MD",
+    "RNA3DCNN_MDMC",
     "cgRNASP",
     "cgRNASP-C",
     "cgRNASP-CN",
@@ -135,9 +136,34 @@ def score_rna_briq(pdb_path: str) -> float:
             raise RuntimeError(f"Failed to parse RNA-BRiQ output: {result.stderr}")
 
 
-def score_rna3dcnn(pdb_path: str) -> float:
-    """Score RNA structure using RNA3DCNN method"""
-    return 0.0
+def _run_rna3dcnn(pdb_path: str, model_path: str) -> float:
+    """Helper function to run RNA3DCNN with specified model"""
+    result = run_command(
+        [
+            "/opt/RNA3DCNN/venv/bin/python",
+            "/opt/RNA3DCNN/Main.py",
+            "-pn", pdb_path,
+            "-model", model_path,
+            "-local", "0"
+        ]
+    )
+    
+    try:
+        # Parse "Total score for /path/to/pdb.pdb is X.XXX"
+        score = float(result.stdout.strip().split()[-1])
+        return score
+    except (ValueError, IndexError):
+        raise RuntimeError(f"Failed to parse RNA3DCNN output: {result.stdout}")
+
+
+def score_rna3dcnn_md(pdb_path: str) -> float:
+    """Score RNA structure using RNA3DCNN_MD method"""
+    return _run_rna3dcnn(pdb_path, "/opt/RNA3DCNN/RNA3DCNN_MD.hdf5")
+
+
+def score_rna3dcnn_mdmc(pdb_path: str) -> float:
+    """Score RNA structure using RNA3DCNN_MDMC method"""
+    return _run_rna3dcnn(pdb_path, "/opt/RNA3DCNN/RNA3DCNN_MDMC.hdf5")
 
 
 def _run_cgrnasp(pdb_path: str, executable: str) -> float:
@@ -222,7 +248,8 @@ SCORING_FUNCTIONS = {
     "DFIRE": score_dfire,
     "RASP": score_rasp,
     "RNA-BRiQ": score_rna_briq,
-    "RNA3DCNN": score_rna3dcnn,
+    "RNA3DCNN_MD": score_rna3dcnn_md,
+    "RNA3DCNN_MDMC": score_rna3dcnn_mdmc,
     "cgRNASP": score_cgrnasp,
     "cgRNASP-C": score_cgrnasp_c,
     "cgRNASP-CN": score_cgrnasp_cn,
