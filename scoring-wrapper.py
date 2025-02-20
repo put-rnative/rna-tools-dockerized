@@ -311,7 +311,7 @@ def main():
     # Setup default checkpoint in user's home directory
     default_checkpoint = Path.home() / ".rna_scoring_checkpoint.csv"
     checkpoint_file = Path(args.checkpoint) if args.checkpoint else default_checkpoint
-    
+
     # Load existing results if checkpoint exists
     results: Dict[str, Dict[str, float]] = {pdb_file: {} for pdb_file in args.pdb_files}
     if checkpoint_file.exists():
