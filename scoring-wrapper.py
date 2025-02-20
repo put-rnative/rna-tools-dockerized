@@ -321,7 +321,7 @@ def main():
     print(df.round(3))
 
     if args.output:
-        df.round(3).to_csv(args.output)
+        df.to_csv(args.output)
         print(f"\nResults saved to: {args.output}")
 
 
