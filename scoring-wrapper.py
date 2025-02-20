@@ -123,27 +123,20 @@ def main():
 
     # Prepare all scoring tasks
     tasks: List[Tuple[str, str]] = [
-        (pdb_file, method) 
-        for pdb_file in args.pdb_files
-        for method in methods
+        (pdb_file, method) for pdb_file in args.pdb_files for method in methods
     ]
 
     # Process files in parallel while preserving order
     print("\nScoring files in parallel...")
     with ThreadPool() as pool:
-        scores = pool.starmap(
-            lambda f, m: (f, m, SCORING_FUNCTIONS[m](f)),
-            tasks
-        )
+        scores = pool.starmap(lambda f, m: (f, m, SCORING_FUNCTIONS[m](f)), tasks)
 
     # Collect results preserving file order
-    results: Dict[str, Dict[str, float]] = {
-        pdb_file: {} for pdb_file in args.pdb_files
-    }
+    results: Dict[str, Dict[str, float]] = {pdb_file: {} for pdb_file in args.pdb_files}
     for pdb_file, method, score in scores:
         results[pdb_file][method] = score
 
-    # Create DataFrame and display results 
+    # Create DataFrame and display results
     df = pd.DataFrame.from_dict(results, orient="index")
     print("\nScoring Results:")
     print(df.round(3))
