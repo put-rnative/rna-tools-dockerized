@@ -137,12 +137,12 @@ def _run_cgrnasp(pdb_path: str, executable: str) -> float:
             expected_returncode=6,
         )
 
-        # Read score
+        # Read score from second column
         try:
             with open(tmp_out) as f:
-                score = float(f.read().strip())
+                score = float(f.read().strip().split()[1])
                 return score
-        except (ValueError, IOError) as e:
+        except (ValueError, IOError, IndexError) as e:
             raise RuntimeError(f"Failed to read score from {tmp_out}: {e}")
 
 
