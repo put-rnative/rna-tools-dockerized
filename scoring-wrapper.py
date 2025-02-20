@@ -327,7 +327,8 @@ def main():
     # Count total tasks and already completed ones
     total_tasks = len(args.pdb_files) * len(methods)
     completed_tasks = sum(
-        1 for pdb_file in args.pdb_files
+        1
+        for pdb_file in args.pdb_files
         for method in methods
         if method in results.get(pdb_file, {})
     )
@@ -346,9 +347,7 @@ def main():
         # Process remaining files in parallel, handling results as they complete
         with ThreadPool() as pool:
             with tqdm(
-                total=total_tasks,
-                initial=completed_tasks,
-                desc="Scoring files"
+                total=total_tasks, initial=completed_tasks, desc="Scoring files"
             ) as pbar:
                 for pdb_file, method, score in pool.imap_unordered(
                     lambda t: (t[0], t[1], SCORING_FUNCTIONS[t[1]](t[0])), tasks
