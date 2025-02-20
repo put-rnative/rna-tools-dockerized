@@ -173,12 +173,12 @@ def score_lociparse(pdb_path: str) -> float:
 
 def score_rsrnasp(pdb_path: str) -> float:
     """Score RNA structure using rsRNASP method"""
-    with tempfile.NamedTemporaryFile(suffix='.txt') as tmp_out:
+    with tempfile.NamedTemporaryFile(suffix=".txt") as tmp_out:
         result = run_command(
             ["/opt/rsRNASP/rsRNASP", pdb_path, tmp_out.name],
             expected_returncode=6,
         )
-        
+
         # Read score from second column
         try:
             with open(tmp_out.name) as f:
