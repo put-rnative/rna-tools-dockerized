@@ -5,6 +5,7 @@ import shutil
 import subprocess
 import tempfile
 from multiprocessing.pool import ThreadPool
+from pathlib import Path
 from typing import Dict, List, Tuple, Optional
 
 from lociPARSE import lociparse
@@ -307,10 +308,14 @@ def main():
 
     print(f"Processing PDB files: {args.pdb_files}")
 
+    # Setup default checkpoint in user's home directory
+    default_checkpoint = Path.home() / ".rna_scoring_checkpoint.csv"
+    checkpoint_file = Path(args.checkpoint) if args.checkpoint else default_checkpoint
+    
     # Load existing results if checkpoint exists
     results: Dict[str, Dict[str, float]] = {pdb_file: {} for pdb_file in args.pdb_files}
-    if args.checkpoint and os.path.exists(args.checkpoint):
-        checkpoint_df = pd.read_csv(args.checkpoint, index_col=0)
+    if checkpoint_file.exists():
+        checkpoint_df = pd.read_csv(checkpoint_file, index_col=0)
         for pdb_file in args.pdb_files:
             if pdb_file in checkpoint_df.index:
                 for method in methods:
@@ -347,8 +352,7 @@ def main():
             results[pdb_file][method] = score
 
             # Save checkpoint after each score
-            if args.checkpoint:
-                pd.DataFrame.from_dict(results, orient="index").to_csv(args.checkpoint)
+            pd.DataFrame.from_dict(results, orient="index").to_csv(checkpoint_file)
 
     # Create DataFrame and display/save results
     df = pd.DataFrame.from_dict(results, orient="index")
