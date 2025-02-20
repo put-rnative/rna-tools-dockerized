@@ -169,6 +169,12 @@ docker run --rm -v ${pdb}:/tmp/input.pdb rasp:latest bash -c "rasp_fd -p /tmp/in
 
 # DFIRE
 
+DFIRE-RNA is an all-atom knowledge-based potential for RNA structure discrimination described in:
+
+Zhang, T., Hu, G., Yang, Y., Wang, J., & Zhou, Y. (2020). All-Atom Knowledge-Based Potential for RNA Structure Discrimination Based on the Distance-Scaled Finite Ideal-Gas Reference State. Journal of Computational Biology, 27(6), 856–867. https://doi.org/10.1089/cmb.2019.0251
+
+Source code: https://github.com/tcgriffith/dfire_rna
+
 Docker usage:
 
 ```bash
