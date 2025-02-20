@@ -165,28 +165,34 @@ def score_rna_briq(pdb_path: str) -> float:
 
 def _run_rna3dcnn(pdb_path: str, model_path: str) -> float:
     """Helper function to run RNA3DCNN with specified model"""
-    result = run_command(
-        [
-            "/opt/RNA3DCNN/venv/bin/python",
-            "/opt/RNA3DCNN/Main.py",
-            "-pn",
-            pdb_path,
-            "-model",
-            model_path,
-            "-local",
-            "0",
-        ]
-    )
-
     try:
-        # Find the last line starting with "Total score for"
-        for line in result.stdout.splitlines()[::-1]:
-            if line.startswith("Total score for"):
-                score = float(line.split()[-1])
-                return score
-        raise ValueError("No score line found")
-    except (ValueError, IndexError):
-        raise RuntimeError(f"Failed to parse RNA3DCNN output: {result.stdout}")
+        result = run_command(
+            [
+                "/opt/RNA3DCNN/venv/bin/python",
+                "/opt/RNA3DCNN/Main.py",
+                "-pn",
+                pdb_path,
+                "-model",
+                model_path,
+                "-local",
+                "0",
+            ]
+        )
+
+        try:
+            # Find the last line starting with "Total score for"
+            for line in result.stdout.splitlines()[::-1]:
+                if line.startswith("Total score for"):
+                    score = float(line.split()[-1])
+                    return score
+            print("No score line found in RNA3DCNN output")
+            return np.nan
+        except (ValueError, IndexError):
+            print(f"Failed to parse RNA3DCNN output: {result.stdout}")
+            return np.nan
+    except Exception as e:
+        print(f"Error running RNA3DCNN: {str(e)}")
+        return np.nan
 
 
 def score_rna3dcnn_md(pdb_path: str) -> float:
@@ -201,31 +207,36 @@ def score_rna3dcnn_mdmc(pdb_path: str) -> float:
 
 def _run_cgrnasp(pdb_path: str, executable: str) -> float:
     """Helper function to run cgRNASP variants"""
-    with tempfile.TemporaryDirectory() as tmpdir:
-        # Copy PDB file to temp directory
-        tmp_pdb = os.path.join(tmpdir, "input.pdb")
-        shutil.copy2(pdb_path, tmp_pdb)
+    try:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            # Copy PDB file to temp directory
+            tmp_pdb = os.path.join(tmpdir, "input.pdb")
+            shutil.copy2(pdb_path, tmp_pdb)
 
-        # Create temp file for output
-        tmp_out = os.path.join(tmpdir, "output.txt")
+            # Create temp file for output
+            tmp_out = os.path.join(tmpdir, "output.txt")
 
-        # Get executable directory to use as cwd
-        exe_dir = os.path.dirname(executable)
+            # Get executable directory to use as cwd
+            exe_dir = os.path.dirname(executable)
 
-        # Run scoring from executable directory
-        result = run_command(
-            [executable, tmpdir, "1", tmp_out],
-            cwd=exe_dir,
-            expected_returncode=6,
-        )
+            # Run scoring from executable directory
+            result = run_command(
+                [executable, tmpdir, "1", tmp_out],
+                cwd=exe_dir,
+                expected_returncode=6,
+            )
 
-        # Read score from second column
-        try:
-            with open(tmp_out) as f:
-                score = float(f.read().strip().split()[1])
-                return score
-        except (ValueError, IOError, IndexError) as e:
-            raise RuntimeError(f"Failed to read score from {tmp_out}: {e}")
+            # Read score from second column
+            try:
+                with open(tmp_out) as f:
+                    score = float(f.read().strip().split()[1])
+                    return score
+            except (ValueError, IOError, IndexError) as e:
+                print(f"Failed to read score from {tmp_out}: {e}")
+                return np.nan
+    except Exception as e:
+        print(f"Error running cgRNASP variant: {str(e)}")
+        return np.nan
 
 
 def score_cgrnasp(pdb_path: str) -> float:
@@ -250,29 +261,38 @@ def score_cgrnasp_pc(pdb_path: str) -> float:
 
 def score_lociparse(pdb_path: str) -> float:
     """Score RNA structure using lociPARSE method"""
-    lp = lociparse()
-    return lp.score(pdb_path).pMoL.value
+    try:
+        lp = lociparse()
+        return lp.score(pdb_path).pMoL.value
+    except Exception as e:
+        print(f"Error running lociPARSE: {str(e)}")
+        return np.nan
 
 
 def score_rsrnasp(pdb_path: str) -> float:
     """Score RNA structure using rsRNASP method"""
-    executable = "/opt/rsRNASP/rsRNASP"
-    exe_dir = os.path.dirname(executable)
+    try:
+        executable = "/opt/rsRNASP/rsRNASP"
+        exe_dir = os.path.dirname(executable)
 
-    with tempfile.NamedTemporaryFile(suffix=".txt") as tmp_out:
-        result = run_command(
-            [executable, pdb_path, tmp_out.name],
-            expected_returncode=6,
-            cwd=exe_dir,
-        )
+        with tempfile.NamedTemporaryFile(suffix=".txt") as tmp_out:
+            result = run_command(
+                [executable, pdb_path, tmp_out.name],
+                expected_returncode=6,
+                cwd=exe_dir,
+            )
 
-        # Read score from second column
-        try:
-            with open(tmp_out.name) as f:
-                score = float(f.read().strip().split()[1])
-                return score
-        except (ValueError, IOError, IndexError) as e:
-            raise RuntimeError(f"Failed to read score from {tmp_out.name}: {e}")
+            # Read score from second column
+            try:
+                with open(tmp_out.name) as f:
+                    score = float(f.read().strip().split()[1])
+                    return score
+            except (ValueError, IOError, IndexError) as e:
+                print(f"Failed to read score from {tmp_out.name}: {e}")
+                return np.nan
+    except Exception as e:
+        print(f"Error running rsRNASP: {str(e)}")
+        return np.nan
 
 
 # Mapping of method names to scoring functions
