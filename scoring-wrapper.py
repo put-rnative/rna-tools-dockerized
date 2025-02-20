@@ -339,8 +339,7 @@ def main():
         with ThreadPool() as pool:
             for pdb_file, method, score in tqdm(
                 pool.imap_unordered(
-                    lambda t: (t[0], t[1], SCORING_FUNCTIONS[t[1]](t[0])), 
-                    tasks
+                    lambda t: (t[0], t[1], SCORING_FUNCTIONS[t[1]](t[0])), tasks
                 ),
                 total=len(tasks),
                 desc="Scoring files",
