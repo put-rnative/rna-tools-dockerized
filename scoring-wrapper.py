@@ -37,13 +37,14 @@ def main():
     # Use all methods if none specified
     methods = args.scoring_method if args.scoring_method else SCORING_METHODS
     print(f"Using scoring methods: {methods}")
-    
+
     # Validate PDB files exist
     import os.path
+
     for pdb_file in args.pdb_files:
         if not os.path.isfile(pdb_file):
             parser.error(f"PDB file not found: {pdb_file}")
-            
+
     print(f"Processing PDB files: {args.pdb_files}")
 
 
