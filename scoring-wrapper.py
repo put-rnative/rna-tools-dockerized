@@ -59,7 +59,7 @@ def score_dfire(pdb_path: str) -> float:
         text=True,
         check=True,
     )
-    
+
     try:
         # Parse the score from output
         score = float(result.stdout.strip())
