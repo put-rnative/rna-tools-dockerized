@@ -1,4 +1,0 @@
-R1107TS248_5.pdb
-    >strand_0
-seq GGGGGCCACAGCAGAAGCGUUCACGUCGCAGCCCCUGUCAGCCAUUGCACUCCGGCUGCGAAUUCUGCU
-cWW ((((((((((((((((...))).)))))))))))))(.(((.((((((((....).))).)))))))).

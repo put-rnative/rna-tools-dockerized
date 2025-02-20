@@ -1,5 +1,0 @@
-R1190TS054_4.pdb
-    >strand_0
-seq GCGUACAGGGAACACGCAACCCCGAAGGAUCGGGGAAGGGACGUCGCCAGGGAGGCGAUUCCAUCAGGAUGAUGACGAGGGACUGAAGAGUGGGCGGGGUAAUACCCCGCCCCUUUUU
-cWW ((((.........))))..((((((....))))))...(((.((((((.....))))))))).((((.(..........)..))))((((.(((((((((...)))))))))))))..
-tSH .....(.)................................................................(.)...........................................

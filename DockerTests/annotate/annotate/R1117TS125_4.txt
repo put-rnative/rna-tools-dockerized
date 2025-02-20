@@ -1,5 +1,0 @@
-R1117TS125_4.pdb
-    >strand_0
-seq UUGGGUUCCCUCACCCCAAUCAUAAAAAGG
-cWW .((((....[[[..))))........]]].
-tWH ...................(..).......

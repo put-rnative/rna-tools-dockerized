@@ -1,5 +1,0 @@
-R1128TS076_1.pdb
-    >strand_0
-seq GGAAUAUCGUCAUGGUGAUUCGUCACCAUGAGGCUAGAUCUCAUAUCUAGCGCUUUCGAGCGCUAGAGUCCUUAUCUAGCCGGUUUAUACUUUCGAGUGUGAACCCGAUAUUCCGCGGAUCACUAUGAGUCGUUCGCGGCUCAUAGUCCGGCUCAAAGGACAUCAUGGCCUGUUCGCAGGUUGUGAUUAUGAGUGAGCCGGGUAAGGCAUACCGUUCGCGGUAUGUCUUACGAUCCGC
-cWW (((((((((.((((((((....)))))))).(((((((((..(.((((((((((....))))))))).).).)))))))))((((((((((....)))))))))))))))))))((((((((((((((((((....)))))))))))(((((((((...(.(((((((((((....))))))))))).)...)))))))))(((((((((((((....))))))))))))))))))))
-tSH ...........................................................................................(.)..............................................................................(.)...............................................................

@@ -1,6 +1,0 @@
-R1117TS131_4.pdb
-    >strand_0
-seq UUGGGUUCCCUCACCCCAAUCAUAAAAAGG
-cHW .................(.[.....).]..
-cSH ........................()....
-tWW .................({([))}].....

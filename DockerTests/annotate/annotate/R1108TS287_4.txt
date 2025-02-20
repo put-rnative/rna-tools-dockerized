@@ -1,5 +1,0 @@
-R1108TS287_4.pdb
-    >strand_0
-seq GGGGGCCACAGCAGAAGCGUUCACGUCGCGGCCCCUGUCAGCCAUUGCACUCCGGCUGCGAAUUCUGCU
-cWW (((((((..[[[[[[[(((([[)...))))))))))]](((((..........)))))....]]]]]]]
-cSH ..................................................()..........().....

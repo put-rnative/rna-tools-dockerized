@@ -1,5 +1,0 @@
-R1190TS439_3.pdb
-    >strand_0
-seq GCGUACAGGGAACACGCAACCCCGAAGGAUCGGGGAAGGGACGUCGCCAGGGAGGCGAUUCCAUCAGGAUGAUGACGAGGGACUGAAGAGUGGGCGGGGUAAUACCCCGCCCCUUUUU
-cWW (((((.......))))).(((((((....)))))))..((..((((((.....)))))).)).......................(((((.((((((((.....))))))))))))).
-tSH ................................................(...).................................................................

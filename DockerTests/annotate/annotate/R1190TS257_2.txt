@@ -1,5 +1,0 @@
-R1190TS257_2.pdb
-    >strand_0
-seq GCGUACAGGGAACACGCAACCCCGAAGGAUCGGGGAAGGGACGUCGCCAGGGAGGCGAUUCCAUCAGGAUGAUGACGAGGGACUGAAGAGUGGGCGGGGUAAUACCCCGCCCCUUUUU
-cWW ...................((((........))))........((((.......))))...((((.....))))............((.(.((((((((.....)))))))).)))..
-tWS ............................................................(.............)...........................................

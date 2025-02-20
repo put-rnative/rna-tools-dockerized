@@ -1,5 +1,0 @@
-R1149TS076_4.pdb
-    >strand_0
-seq GGACACGAGUAACUCGUCUAUCUUCUGCAGGCUGCUUACGGUUUCGUCCGUGUUGCAGCCGAUCAUCAGCACAUCUAGGUUUCGUCCGGGUGUGACCGAAAGGUAAGAUGGAGAGCCUUGUCCC
-cWW (((((..((..((((.((((((((((((.((((((.((((((....))))))..)))))).....))))(((((((.((.(..).)))))))))(((....)))))))))))))))))))))).
-cSH ..........(.)....................................................................................(..).......................

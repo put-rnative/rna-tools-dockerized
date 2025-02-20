@@ -1,3 +1,0 @@
-pred,id,rms,file_path
-6.0303569,S_000028_476.pdb,0,/app/ares_release/data/sample/pdbs/S_000028_476.pdb
-7.9565406,S_000041_026.pdb,0,/app/ares_release/data/sample/pdbs/S_000041_026.pdb

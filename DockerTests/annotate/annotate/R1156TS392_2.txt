@@ -1,5 +1,0 @@
-R1156TS392_2.pdb
-    >strand_0
-seq GGAGCAUCGUGUCUCAAGUGCUUCACGGUCACAAUAUACCGUUUCGUCGGGUGCGUGGCAAUUCGGUGCACAUCAUGUCUUUCGUGGCUGGUGUGGCUCCUCAAGGUGCGAGGGGCAAGUAUAGAGCAGAGCUCC
-cWW (((((.((.((.((((.(((((((((..(((((...((((((....))))).)))))).......)))(((((((.((((....)))))))))))(((((((.......))))))))))))))))))))))))))
-tWS ...........................(................................)..........................................................................

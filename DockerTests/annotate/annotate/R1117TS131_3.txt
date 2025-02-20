@@ -1,6 +1,0 @@
-R1117TS131_3.pdb
-    >strand_0
-seq UUGGGUUCCCUCACCCCAAUCAUAAAAAGG
-cWW ((.((.(..((......))..)))..))..
-cWH ..(.....................).....
-tSH ............(.)...............
