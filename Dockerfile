@@ -8,7 +8,6 @@ RUN apt-get update \
       cmake \
       make \
       parallel \
-      python3-biopython \
       python3-pandas \
       python3-pip \
       python3-setuptools \
@@ -80,7 +79,7 @@ RUN echo "=== 3dRNAscore ===" \
 # Python-based
 RUN echo "=== RNA3DCNN ===" \
  && python3 -m virtualenv /opt/RNA3DCNN/venv \
- && /opt/RNA3DCNN/venv/bin/pip install 'tensorflow<=2.15' \
+ && /opt/RNA3DCNN/venv/bin/pip install 'tensorflow<=2.15' biopython \
  && echo "=== lociPARSE ===" \
  && cd /opt/lociPARSE-8c7acbe4e7c486122a4c261b1ea68fff7247b796 \
  && pip install .
