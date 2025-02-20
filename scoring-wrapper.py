@@ -1,6 +1,7 @@
 #! /usr/bin/env python3
 import argparse
 import hashlib
+import numpy as np
 import os.path
 import shutil
 import subprocess
@@ -65,25 +66,30 @@ SCORING_METHODS = [
 
 def score_3drnascore(pdb_path: str) -> float:
     """Score RNA structure using 3dRNAscore method"""
-    with tempfile.NamedTemporaryFile(suffix=".pdb") as formatted:
-        # Format the PDB file
-        run_command(
-            ["perl", "/opt/3dRNAscore/lib/format.pl", pdb_path],
-            stdout=formatted,
-        )
+    try:
+        with tempfile.NamedTemporaryFile(suffix=".pdb") as formatted:
+            # Format the PDB file
+            run_command(
+                ["perl", "/opt/3dRNAscore/lib/format.pl", pdb_path],
+                stdout=formatted,
+            )
 
-        # Run 3dRNAscore
-        result = run_command(
-            ["/opt/3dRNAscore/bin/3dRNAscore", "-s", formatted.name],
-        )
+            # Run 3dRNAscore
+            result = run_command(
+                ["/opt/3dRNAscore/bin/3dRNAscore", "-s", formatted.name],
+            )
 
-        # Parse the score from output
-        try:
-            # Assuming the score is the last number in the output
-            score = float(result.stdout.strip().split()[-1])
-            return score
-        except (ValueError, IndexError):
-            raise RuntimeError(f"Failed to parse 3dRNAscore output: {result.stdout}")
+            # Parse the score from output
+            try:
+                # Assuming the score is the last number in the output
+                score = float(result.stdout.strip().split()[-1])
+                return score
+            except (ValueError, IndexError):
+                print(f"Failed to parse 3dRNAscore output: {result.stdout}")
+                return np.nan
+    except Exception as e:
+        print(f"Error running 3dRNAscore: {str(e)}")
+        return np.nan
 
 
 def score_dfire(pdb_path: str) -> float:
