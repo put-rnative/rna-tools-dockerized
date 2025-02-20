@@ -152,9 +152,12 @@ def _run_rna3dcnn(pdb_path: str, model_path: str) -> float:
     )
 
     try:
-        # Parse "Total score for /path/to/pdb.pdb is X.XXX"
-        score = float(result.stdout.strip().split()[-1])
-        return score
+        # Find the last line starting with "Total score for"
+        for line in result.stdout.splitlines()[::-1]:
+            if line.startswith("Total score for"):
+                score = float(line.split()[-1])
+                return score
+        raise ValueError("No score line found")
     except (ValueError, IndexError):
         raise RuntimeError(f"Failed to parse RNA3DCNN output: {result.stdout}")
 
