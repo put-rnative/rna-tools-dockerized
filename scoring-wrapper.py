@@ -335,24 +335,19 @@ def main():
     if not tasks:
         print("\nAll requested scores already computed!")
     else:
-        # Process remaining files in parallel while preserving order
+        # Process remaining files in parallel, handling results as they complete
         with ThreadPool() as pool:
-            scores = list(
-                tqdm(
-                    pool.imap(
-                        lambda t: (t[0], t[1], SCORING_FUNCTIONS[t[1]](t[0])), tasks
-                    ),
-                    total=len(tasks),
-                    desc="Scoring files",
-                )
-            )
-
-        # Update results with new scores
-        for pdb_file, method, score in scores:
-            results[pdb_file][method] = score
-
-            # Save checkpoint after each score
-            pd.DataFrame.from_dict(results, orient="index").to_csv(checkpoint_file)
+            for pdb_file, method, score in tqdm(
+                pool.imap_unordered(
+                    lambda t: (t[0], t[1], SCORING_FUNCTIONS[t[1]](t[0])), 
+                    tasks
+                ),
+                total=len(tasks),
+                desc="Scoring files",
+            ):
+                # Update results and checkpoint as soon as each score is ready
+                results[pdb_file][method] = score
+                pd.DataFrame.from_dict(results, orient="index").to_csv(checkpoint_file)
 
     # Create DataFrame and display/save results
     df = pd.DataFrame.from_dict(results, orient="index")
