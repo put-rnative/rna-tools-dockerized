@@ -111,7 +111,7 @@ def score_rna_briq(pdb_path: str) -> float:
     """Score RNA structure using RNA-BRiQ method"""
     with tempfile.NamedTemporaryFile(mode="w+", suffix=".txt") as ss_file:
         # Run BRiQ_AssignSS
-        run_command(["/opt/RNA-BRiQ/bin/BRiQ_AssignSS", pdb_path, ss_file.name])
+        run_command(["/opt/RNA-BRiQ/build/bin/BRiQ_AssignSS", pdb_path, ss_file.name])
 
         # Add pdb path at the beginning of the file
         ss_file.seek(0)
@@ -122,12 +122,13 @@ def score_rna_briq(pdb_path: str) -> float:
 
         # Run BRiQ_Energy and capture stderr for score
         result = run_command(
-            ["/opt/RNA-BRiQ/bin/BRiQ_Energy", ss_file.name],
+            ["/opt/RNA-BRiQ/build/bin/BRiQ_Energy", ss_file.name],
             stdout=subprocess.DEVNULL,
         )
 
         try:
-            score = float(result.stderr.strip())
+            # Parse score from second column
+            score = float(result.stderr.strip().split()[1])
             return score
         except (ValueError, IndexError):
             raise RuntimeError(f"Failed to parse RNA-BRiQ output: {result.stderr}")
