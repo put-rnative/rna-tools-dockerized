@@ -280,6 +280,12 @@ def main():
         nargs="+",
         help="One or more PDB files to score",
     )
+    parser.add_argument(
+        "--output",
+        help="Save results to CSV file",
+        type=str,
+        metavar="FILE.csv",
+    )
 
     args = parser.parse_args()
 
@@ -309,10 +315,14 @@ def main():
     for pdb_file, method, score in scores:
         results[pdb_file][method] = score
 
-    # Create DataFrame and display results
+    # Create DataFrame and display/save results
     df = pd.DataFrame.from_dict(results, orient="index")
     print("\nScoring Results:")
     print(df.round(3))
+    
+    if args.output:
+        df.round(3).to_csv(args.output)
+        print(f"\nResults saved to: {args.output}")
 
 
 if __name__ == "__main__":
