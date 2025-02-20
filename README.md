@@ -1,6 +1,35 @@
-# Building
+# RNA Structure Scoring Tools
 
-Clone the repository and build all images using `./build.sh`
+This repository provides Docker images for various RNA structure scoring methods. The recommended way to use these tools is through our unified wrapper image that incorporates all scoring methods:
+
+```bash
+# Assuming $pdb_dir contains your PDB files:
+docker run --rm -v ${pdb_dir}:/data rna-tools scoring-wrapper.py /data/*.pdb
+```
+
+The wrapper provides several features:
+- Parallel processing of files and methods
+- Automatic checkpointing to resume interrupted runs
+- Unified CSV output format
+- Progress tracking with completion estimates
+
+## Wrapper Usage
+
+```bash
+scoring-wrapper.py [-h] [--scoring-method {3dRNAscore,DFIRE,RASP,RNA-BRiQ,RNA3DCNN_MD,RNA3DCNN_MDMC,cgRNASP,cgRNASP-C,cgRNASP-CN,cgRNASP-PC,lociPARSE,rsRNASP}] 
+                  [--output FILE.csv] [--checkpoint FILE.csv]
+                  pdb_files [pdb_files ...]
+```
+
+The wrapper will:
+1. Process multiple PDB files in parallel
+2. Save progress automatically to a checkpoint file (unique per set of files/methods)
+3. Resume from checkpoint if interrupted
+4. Output results in a CSV format with one row per PDB file and columns for each scoring method
+
+## Individual Method Images
+
+If you prefer to use individual scoring methods separately, the following Docker images are available:
 
 # ARES
 
