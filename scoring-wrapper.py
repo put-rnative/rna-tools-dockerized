@@ -308,11 +308,13 @@ def main():
 
     # Process files in parallel while preserving order
     with ThreadPool() as pool:
-        scores = list(tqdm(
-            pool.imap(lambda t: (t[0], t[1], SCORING_FUNCTIONS[t[1]](t[0])), tasks),
-            total=len(tasks),
-            desc="Scoring files"
-        ))
+        scores = list(
+            tqdm(
+                pool.imap(lambda t: (t[0], t[1], SCORING_FUNCTIONS[t[1]](t[0])), tasks),
+                total=len(tasks),
+                desc="Scoring files",
+            )
+        )
 
     # Collect results preserving file order
     results: Dict[str, Dict[str, float]] = {pdb_file: {} for pdb_file in args.pdb_files}
