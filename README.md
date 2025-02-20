@@ -147,6 +147,10 @@ docker run --rm -v ${pdb}:/tmp/input.pdb rsrnasp:latest rsRNASP /tmp/input.pdb
 
 # 3dRNAscore
 
+3dRNAscore is a distance and torsion angle dependent evaluation function described in:
+
+Wang, J., Zhao, Y., Zhu, C., & Xiao, Y. (2015). 3dRNAscore: A distance and torsion angle dependent evaluation function of 3D RNA structures. Nucleic Acids Research, 43(10), e63–e63. https://doi.org/10.1093/nar/gkv141
+
 Docker usage:
 
 ```bash
