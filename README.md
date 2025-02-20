@@ -4,7 +4,7 @@ This repository provides Docker images for various RNA structure scoring methods
 
 ```bash
 # Assuming $pdb_dir contains your PDB files:
-docker run --rm -v ${pdb_dir}:/data rna-tools scoring-wrapper.py /data/*.pdb
+docker run --rm -v ${pdb_dir}:/data rna-tools bash -c 'scoring-wrapper.py /data/*.pdb'
 ```
 
 The wrapper provides several features:
