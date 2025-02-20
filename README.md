@@ -68,6 +68,12 @@ cat output.csv
 
 # RNA-BRiQ
 
+RNA-BRiQ (RNA Base-pair and Residue Interaction Quality) is a high-resolution statistical potential for RNA structure assessment described in:
+
+Xiong, P., Wu, R., Zhan, J., & Zhou, Y. (2021). Pairing a high-resolution statistical potential with a nucleobase-centric sampling algorithm for improving RNA model refinement. Nature Communications, 12(1), 2777. https://doi.org/10.1038/s41467-021-23100-4
+
+Source code: https://github.com/Jian-Zhan/RNA-BRiQ
+
 Docker usage:
 
 ```bash
