@@ -1,5 +1,6 @@
 #! /usr/bin/env python3
 import argparse
+import hashlib
 import os.path
 import shutil
 import subprocess
@@ -309,9 +310,22 @@ def main():
 
     print(f"Processing PDB files: {args.pdb_files}")
 
-    # Setup default checkpoint in user's home directory
-    default_checkpoint = Path.home() / ".rna_scoring_checkpoint.csv"
-    checkpoint_file = Path(args.checkpoint) if args.checkpoint else default_checkpoint
+    # Create unique checkpoint name based on methods and files
+    if not args.checkpoint:
+        # Sort for consistent hashing
+        methods_str = ",".join(sorted(methods))
+        files_str = ",".join(sorted(args.pdb_files))
+        
+        # Create hash of methods and files
+        hasher = hashlib.sha256()
+        hasher.update(methods_str.encode())
+        hasher.update(files_str.encode())
+        hash_suffix = hasher.hexdigest()[:8]
+        
+        default_checkpoint = Path.home() / f".rna_scoring_checkpoint_{hash_suffix}.csv"
+        checkpoint_file = default_checkpoint
+    else:
+        checkpoint_file = Path(args.checkpoint)
 
     # Load existing results if checkpoint exists
     results: Dict[str, Dict[str, float]] = {pdb_file: {} for pdb_file in args.pdb_files}
