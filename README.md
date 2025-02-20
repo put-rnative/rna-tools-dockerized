@@ -17,7 +17,7 @@ The wrapper provides several features:
 
 ```bash
 scoring-wrapper.py [-h] [--scoring-method {3dRNAscore,DFIRE,RASP,RNA-BRiQ,RNA3DCNN_MD,RNA3DCNN_MDMC,cgRNASP,cgRNASP-C,cgRNASP-CN,cgRNASP-PC,lociPARSE,rsRNASP}] 
-                  [--output FILE.csv] [--checkpoint FILE.csv]
+                  [--output FILE.csv]
                   pdb_files [pdb_files ...]
 ```
 

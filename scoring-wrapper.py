@@ -290,12 +290,6 @@ def main():
         type=str,
         metavar="FILE.csv",
     )
-    parser.add_argument(
-        "--checkpoint",
-        help="Load/save partial results from/to this file",
-        type=str,
-        metavar="FILE.csv",
-    )
 
     args = parser.parse_args()
 
@@ -311,21 +305,17 @@ def main():
     print(f"Processing PDB files: {args.pdb_files}")
 
     # Create unique checkpoint name based on methods and files
-    if not args.checkpoint:
-        # Sort for consistent hashing
-        methods_str = ",".join(sorted(methods))
-        files_str = ",".join(sorted(args.pdb_files))
+    # Sort for consistent hashing
+    methods_str = ",".join(sorted(methods))
+    files_str = ",".join(sorted(args.pdb_files))
 
-        # Create hash of methods and files
-        hasher = hashlib.sha256()
-        hasher.update(methods_str.encode())
-        hasher.update(files_str.encode())
-        hash_suffix = hasher.hexdigest()[:8]
+    # Create hash of methods and files
+    hasher = hashlib.sha256()
+    hasher.update(methods_str.encode())
+    hasher.update(files_str.encode())
+    hash_suffix = hasher.hexdigest()[:8]
 
-        default_checkpoint = Path.home() / f".rna_scoring_checkpoint_{hash_suffix}.csv"
-        checkpoint_file = default_checkpoint
-    else:
-        checkpoint_file = Path(args.checkpoint)
+    checkpoint_file = Path.home() / f".rna_scoring_checkpoint_{hash_suffix}.csv"
 
     # Load existing results if checkpoint exists
     results: Dict[str, Dict[str, float]] = {pdb_file: {} for pdb_file in args.pdb_files}
