@@ -1,6 +1,6 @@
 # RNA Structure Scoring Tools
 
-This repository provides Docker images for various RNA structure scoring methods. The recommended way to use these tools is through our unified wrapper image that incorporates all scoring methods:
+This repository provides Docker images for various RNA structure scoring methods. The recommended way to use these tools is through our unified wrapper image that incorporates all scoring methods except ARES (which requires special preprocessing and must be used separately):
 
 ```bash
 # Assuming $pdb_dir contains your PDB files:
