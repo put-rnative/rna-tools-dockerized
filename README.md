@@ -98,6 +98,12 @@ docker run --rm -v ${pdb}:/tmp/input.pdb lociparse:latest lociPARSE /tmp/input.p
 
 # cgRNASP, cgRNASP-C, cgRNASP-PC
 
+cgRNASP (Coarse-Grained RNA Statistical Potentials) is a family of statistical potentials for RNA structure evaluation described in:
+
+Tan, Y.-L., Wang, X., Yu, S., Zhang, B., & Tan, Z.-J. (2023). cgRNASP: Coarse-grained statistical potentials with residue separation for RNA structure evaluation. NAR Genomics and Bioinformatics, 5(1), lqad016. https://doi.org/10.1093/nargab/lqad016
+
+Source code: https://github.com/Tan-group/cgRNASP
+
 Docker usage:
 
 ```bash
