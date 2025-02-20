@@ -319,7 +319,7 @@ def main():
     df = pd.DataFrame.from_dict(results, orient="index")
     print("\nScoring Results:")
     print(df.round(3))
-    
+
     if args.output:
         df.round(3).to_csv(args.output)
         print(f"\nResults saved to: {args.output}")
