@@ -354,7 +354,9 @@ def main():
                 ):
                     # Update results and checkpoint as soon as each score is ready
                     results[pdb_file][method] = score
-                    pd.DataFrame.from_dict(results, orient="index").to_csv(checkpoint_file)
+                    pd.DataFrame.from_dict(results, orient="index").to_csv(
+                        checkpoint_file
+                    )
                     pbar.update(1)
 
     # Create DataFrame and display/save results
