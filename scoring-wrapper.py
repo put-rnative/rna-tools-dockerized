@@ -72,10 +72,10 @@ def score_rasp(pdb_path: str) -> float:
     """Score RNA structure using RASP method"""
     result = subprocess.run(
         ["/opt/rasp-fd-1.0/bin/rasp_fd", "-p", pdb_path],
-        capture_output=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.DEVNULL,
         text=True,
         check=True,
-        stderr=subprocess.DEVNULL,
     )
 
     try:
