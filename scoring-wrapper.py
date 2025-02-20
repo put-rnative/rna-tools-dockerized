@@ -5,9 +5,36 @@ import shutil
 import subprocess
 import tempfile
 from multiprocessing.pool import ThreadPool
-from typing import Dict, List, Tuple
+from typing import Dict, List, Tuple, Optional
 
 import pandas as pd
+
+
+def run_command(
+    cmd: List[str],
+    *,
+    stdout: Optional[int] = subprocess.PIPE,
+    stderr: Optional[int] = subprocess.PIPE,
+    **kwargs,
+) -> subprocess.CompletedProcess:
+    """Run command with better error handling"""
+    try:
+        return subprocess.run(
+            cmd,
+            stdout=stdout,
+            stderr=stderr,
+            text=True,
+            check=True,
+            **kwargs,
+        )
+    except subprocess.CalledProcessError as e:
+        msg = f"Command failed with exit code {e.returncode}:\n"
+        msg += f"Command: {' '.join(cmd)}\n"
+        if e.stdout:
+            msg += f"stdout:\n{e.stdout}\n"
+        if e.stderr:
+            msg += f"stderr:\n{e.stderr}\n"
+        raise RuntimeError(msg) from e
 
 SCORING_METHODS = [
     "3dRNAscore",
@@ -28,19 +55,14 @@ def score_3drnascore(pdb_path: str) -> float:
     """Score RNA structure using 3dRNAscore method"""
     with tempfile.NamedTemporaryFile(suffix=".pdb") as formatted:
         # Format the PDB file
-        subprocess.run(
+        run_command(
             ["perl", "/opt/3dRNAscore/lib/format.pl", pdb_path],
             stdout=formatted,
-            check=True,
-            text=True,
         )
 
         # Run 3dRNAscore
-        result = subprocess.run(
+        result = run_command(
             ["/opt/3dRNAscore/bin/3dRNAscore", "-s", formatted.name],
-            capture_output=True,
-            text=True,
-            check=True,
         )
 
         # Parse the score from output
@@ -54,12 +76,7 @@ def score_3drnascore(pdb_path: str) -> float:
 
 def score_dfire(pdb_path: str) -> float:
     """Score RNA structure using DFIRE method"""
-    result = subprocess.run(
-        ["/opt/dfire/bin/DFIRE_RNA", pdb_path],
-        capture_output=True,
-        text=True,
-        check=True,
-    )
+    result = run_command(["/opt/dfire/bin/DFIRE_RNA", pdb_path])
 
     try:
         # Parse the score from the second column of output
@@ -71,12 +88,9 @@ def score_dfire(pdb_path: str) -> float:
 
 def score_rasp(pdb_path: str) -> float:
     """Score RNA structure using RASP method"""
-    result = subprocess.run(
+    result = run_command(
         ["/opt/rasp-fd-1.0/bin/rasp_fd", "-p", pdb_path],
-        stdout=subprocess.PIPE,
         stderr=subprocess.DEVNULL,
-        text=True,
-        check=True,
     )
 
     try:
@@ -111,9 +125,8 @@ def _run_cgrnasp(pdb_path: str, executable: str) -> float:
         exe_dir = os.path.dirname(executable)
 
         # Run scoring from executable directory
-        subprocess.run(
+        run_command(
             [executable, tmpdir, "1", tmp_out],
-            check=True,
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
             cwd=exe_dir,
