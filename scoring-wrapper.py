@@ -94,56 +94,71 @@ def score_3drnascore(pdb_path: str) -> float:
 
 def score_dfire(pdb_path: str) -> float:
     """Score RNA structure using DFIRE method"""
-    result = run_command(["/opt/dfire/bin/DFIRE_RNA", pdb_path])
-
     try:
-        # Parse the score from the second column of output
-        score = float(result.stdout.strip().split()[1])
-        return score
-    except (ValueError, IndexError):
-        raise RuntimeError(f"Failed to parse DFIRE output: {result.stdout}")
+        result = run_command(["/opt/dfire/bin/DFIRE_RNA", pdb_path])
+
+        try:
+            # Parse the score from the second column of output
+            score = float(result.stdout.strip().split()[1])
+            return score
+        except (ValueError, IndexError):
+            print(f"Failed to parse DFIRE output: {result.stdout}")
+            return np.nan
+    except Exception as e:
+        print(f"Error running DFIRE: {str(e)}")
+        return np.nan
 
 
 def score_rasp(pdb_path: str) -> float:
     """Score RNA structure using RASP method"""
-    result = run_command(
-        ["/opt/rasp-fd-1.0/bin/rasp_fd", "-p", pdb_path],
-        stderr=subprocess.DEVNULL,
-    )
-
     try:
-        # Parse the score from first column of output
-        score = float(result.stdout.strip().split()[0])
-        return score
-    except (ValueError, IndexError):
-        raise RuntimeError(f"Failed to parse RASP output: {result.stdout}")
+        result = run_command(
+            ["/opt/rasp-fd-1.0/bin/rasp_fd", "-p", pdb_path],
+            stderr=subprocess.DEVNULL,
+        )
+
+        try:
+            # Parse the score from first column of output
+            score = float(result.stdout.strip().split()[0])
+            return score
+        except (ValueError, IndexError):
+            print(f"Failed to parse RASP output: {result.stdout}")
+            return np.nan
+    except Exception as e:
+        print(f"Error running RASP: {str(e)}")
+        return np.nan
 
 
 def score_rna_briq(pdb_path: str) -> float:
     """Score RNA structure using RNA-BRiQ method"""
-    with tempfile.NamedTemporaryFile(mode="w+", suffix=".txt") as ss_file:
-        # Run BRiQ_AssignSS
-        run_command(["/opt/RNA-BRiQ/build/bin/BRiQ_AssignSS", pdb_path, ss_file.name])
+    try:
+        with tempfile.NamedTemporaryFile(mode="w+", suffix=".txt") as ss_file:
+            # Run BRiQ_AssignSS
+            run_command(["/opt/RNA-BRiQ/build/bin/BRiQ_AssignSS", pdb_path, ss_file.name])
 
-        # Add pdb path at the beginning of the file
-        ss_file.seek(0)
-        content = ss_file.read()
-        ss_file.seek(0)
-        ss_file.write(f"pdb {pdb_path}\n{content}")
-        ss_file.flush()
+            # Add pdb path at the beginning of the file
+            ss_file.seek(0)
+            content = ss_file.read()
+            ss_file.seek(0)
+            ss_file.write(f"pdb {pdb_path}\n{content}")
+            ss_file.flush()
 
-        # Run BRiQ_Energy and capture stderr for score
-        result = run_command(
-            ["/opt/RNA-BRiQ/build/bin/BRiQ_Energy", ss_file.name],
-            stdout=subprocess.DEVNULL,
-        )
+            # Run BRiQ_Energy and capture stderr for score
+            result = run_command(
+                ["/opt/RNA-BRiQ/build/bin/BRiQ_Energy", ss_file.name],
+                stdout=subprocess.DEVNULL,
+            )
 
-        try:
-            # Parse score from second column
-            score = float(result.stderr.strip().split()[1])
-            return score
-        except (ValueError, IndexError):
-            raise RuntimeError(f"Failed to parse RNA-BRiQ output: {result.stderr}")
+            try:
+                # Parse score from second column
+                score = float(result.stderr.strip().split()[1])
+                return score
+            except (ValueError, IndexError):
+                print(f"Failed to parse RNA-BRiQ output: {result.stderr}")
+                return np.nan
+    except Exception as e:
+        print(f"Error running RNA-BRiQ: {str(e)}")
+        return np.nan
 
 
 def _run_rna3dcnn(pdb_path: str, model_path: str) -> float:
