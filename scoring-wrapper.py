@@ -36,7 +36,7 @@ def score_3drnascore(pdb_path: str) -> float:
 
         # Run 3dRNAscore
         result = subprocess.run(
-            ["3dRNAscore", "-s", formatted.name],
+            ["/opt/3dRNAscore/bin/3dRNAscore", "-s", formatted.name],
             capture_output=True,
             text=True,
             check=True,
@@ -59,7 +59,7 @@ def score_dfire(pdb_path: str) -> float:
 def score_rasp(pdb_path: str) -> float:
     """Score RNA structure using RASP method"""
     result = subprocess.run(
-        ["rasp_fd", "-p", pdb_path],
+        ["/opt/rasp-fd-1.0/bin/rasp_fd", "-p", pdb_path],
         capture_output=True,
         text=True,
         check=True,
