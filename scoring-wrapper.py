@@ -126,10 +126,8 @@ def _run_cgrnasp(pdb_path: str, executable: str) -> float:
         exe_dir = os.path.dirname(executable)
 
         # Run scoring from executable directory
-        run_command(
+        result = run_command(
             [executable, tmpdir, "1", tmp_out],
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.DEVNULL,
             cwd=exe_dir,
         )
 
