@@ -129,7 +129,7 @@ def main():
             results[pdb_file][method] = score
 
     # Create DataFrame and display results
-    df = pd.DataFrame.from_dict(results, orient='index')
+    df = pd.DataFrame.from_dict(results, orient="index")
     print("\nScoring Results:")
     print(df.round(3))
 
