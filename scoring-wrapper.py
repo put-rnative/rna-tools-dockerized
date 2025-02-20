@@ -6,11 +6,12 @@ import subprocess
 import tempfile
 from multiprocessing.pool import ThreadPool
 from pathlib import Path
-from typing import Dict, List, Tuple, Optional
+from typing import Dict, List, Optional
 
-from lociPARSE import lociparse
 import pandas as pd
 from tqdm import tqdm
+
+from lociPARSE import lociparse
 
 
 def run_command(
