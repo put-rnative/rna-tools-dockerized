@@ -134,7 +134,9 @@ def score_rna_briq(pdb_path: str) -> float:
     try:
         with tempfile.NamedTemporaryFile(mode="w+", suffix=".txt") as ss_file:
             # Run BRiQ_AssignSS
-            run_command(["/opt/RNA-BRiQ/build/bin/BRiQ_AssignSS", pdb_path, ss_file.name])
+            run_command(
+                ["/opt/RNA-BRiQ/build/bin/BRiQ_AssignSS", pdb_path, ss_file.name]
+            )
 
             # Add pdb path at the beginning of the file
             ss_file.seek(0)
