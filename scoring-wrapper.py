@@ -7,6 +7,7 @@ import tempfile
 from multiprocessing.pool import ThreadPool
 from typing import Dict, List, Tuple, Optional
 
+from lociPARSE import lociparse
 import pandas as pd
 
 
@@ -190,7 +191,8 @@ def score_cgrnasp_pc(pdb_path: str) -> float:
 
 def score_lociparse(pdb_path: str) -> float:
     """Score RNA structure using lociPARSE method"""
-    return 0.0
+    lp = lociparse()
+    return lp.score(pdb_path).pMoL.value
 
 
 def score_rsrnasp(pdb_path: str) -> float:
