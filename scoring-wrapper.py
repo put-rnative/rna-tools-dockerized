@@ -36,6 +36,7 @@ def run_command(
             msg += f"stderr:\n{e.stderr}\n"
         raise RuntimeError(msg) from e
 
+
 SCORING_METHODS = [
     "3dRNAscore",
     "DFIRE",
