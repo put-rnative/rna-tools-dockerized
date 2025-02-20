@@ -61,8 +61,8 @@ def score_dfire(pdb_path: str) -> float:
     )
 
     try:
-        # Parse the score from output
-        score = float(result.stdout.strip())
+        # Parse the score from the second column of output
+        score = float(result.stdout.strip().split()[1])
         return score
     except (ValueError, IndexError):
         raise RuntimeError(f"Failed to parse DFIRE output: {result.stdout}")
