@@ -22,45 +22,56 @@ def score_3drnascore(pdb_path: str) -> float:
     """Score RNA structure using 3dRNAscore method"""
     return 0.0
 
+
 def score_dfire(pdb_path: str) -> float:
     """Score RNA structure using DFIRE method"""
     return 0.0
+
 
 def score_rasp(pdb_path: str) -> float:
     """Score RNA structure using RASP method"""
     return 0.0
 
+
 def score_rna_briq(pdb_path: str) -> float:
     """Score RNA structure using RNA-BRiQ method"""
     return 0.0
+
 
 def score_rna3dcnn(pdb_path: str) -> float:
     """Score RNA structure using RNA3DCNN method"""
     return 0.0
 
+
 def score_cgrnasp(pdb_path: str) -> float:
     """Score RNA structure using cgRNASP method"""
     return 0.0
+
 
 def score_cgrnasp_c(pdb_path: str) -> float:
     """Score RNA structure using cgRNASP-C method"""
     return 0.0
 
+
 def score_cgrnasp_cn(pdb_path: str) -> float:
     """Score RNA structure using cgRNASP-CN method"""
     return 0.0
+
 
 def score_cgrnasp_pc(pdb_path: str) -> float:
     """Score RNA structure using cgRNASP-PC method"""
     return 0.0
 
+
 def score_lociparse(pdb_path: str) -> float:
     """Score RNA structure using lociPARSE method"""
     return 0.0
 
+
 def score_rsrnasp(pdb_path: str) -> float:
     """Score RNA structure using rsRNASP method"""
     return 0.0
+
 
 # Mapping of method names to scoring functions
 SCORING_FUNCTIONS = {
@@ -76,6 +87,7 @@ SCORING_FUNCTIONS = {
     "lociPARSE": score_lociparse,
     "rsRNASP": score_rsrnasp,
 }
+
 
 def main():
     parser = argparse.ArgumentParser(
