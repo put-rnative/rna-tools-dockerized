@@ -126,6 +126,12 @@ Note! This uses a different Docker image than cgRNASP, cgRNASP-C and cgRNASP-CN
 
 # rsRNASP
 
+rsRNASP (Residue-Separation-based RNA Statistical Potential) is described in:
+
+Tan, Y.-L., Wang, X., Shi, Y.-Z., Zhang, W., & Tan, Z.-J. (2022). rsRNASP: A residue-separation-based statistical potential for RNA 3D structure evaluation. Biophysical Journal, 121(1), 142–156. https://doi.org/10.1016/j.bpj.2021.11.016
+
+Source code: https://github.com/Tan-group/rsRNASP
+
 Docker usage:
 
 ```bash
