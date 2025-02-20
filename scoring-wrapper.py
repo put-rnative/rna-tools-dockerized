@@ -53,7 +53,19 @@ def score_3drnascore(pdb_path: str) -> float:
 
 def score_dfire(pdb_path: str) -> float:
     """Score RNA structure using DFIRE method"""
-    return 0.0
+    result = subprocess.run(
+        ["/opt/dfire/bin/DFIRE_RNA", pdb_path],
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    
+    try:
+        # Parse the score from output
+        score = float(result.stdout.strip())
+        return score
+    except (ValueError, IndexError):
+        raise RuntimeError(f"Failed to parse DFIRE output: {result.stdout}")
 
 
 def score_rasp(pdb_path: str) -> float:
