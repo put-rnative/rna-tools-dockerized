@@ -175,7 +175,7 @@ def score_rsrnasp(pdb_path: str) -> float:
     """Score RNA structure using rsRNASP method"""
     executable = "/opt/rsRNASP/rsRNASP"
     exe_dir = os.path.dirname(executable)
-    
+
     with tempfile.NamedTemporaryFile(suffix=".txt") as tmp_out:
         result = run_command(
             [executable, pdb_path, tmp_out.name],
