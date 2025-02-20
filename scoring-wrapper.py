@@ -315,13 +315,13 @@ def main():
         # Sort for consistent hashing
         methods_str = ",".join(sorted(methods))
         files_str = ",".join(sorted(args.pdb_files))
-        
+
         # Create hash of methods and files
         hasher = hashlib.sha256()
         hasher.update(methods_str.encode())
         hasher.update(files_str.encode())
         hash_suffix = hasher.hexdigest()[:8]
-        
+
         default_checkpoint = Path.home() / f".rna_scoring_checkpoint_{hash_suffix}.csv"
         checkpoint_file = default_checkpoint
     else:
