@@ -1,4 +1,6 @@
 #! /bin/bash
+docker build -t rna-tools .
+
 for target in 3dRNAscore BRiQ cgRNASP cgRNASP-CN DFIRE-RNA lociPARSE RASP RNA3DCNN rsRNASP; do
 	(
 		cd ${target}
