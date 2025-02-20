@@ -27,6 +27,14 @@ The wrapper will:
 3. Resume from checkpoint if interrupted
 4. Output results in a CSV format with one row per PDB file and columns for each scoring method
 
+Example output:
+
+| PDB File | 3dRNAscore | DFIRE | RASP | RNA3DCNN_MD | RNA3DCNN_MDMC | cgRNASP | cgRNASP-C | cgRNASP-CN | cgRNASP-PC | lociPARSE | rsRNASP | RNA-BRiQ |
+|----------|------------|-------|------|-------------|---------------|----------|-----------|------------|------------|-----------|----------|----------|
+| 1a9nR_M10.pdb | 11.605 | -10349.440 | -7606.76 | 15.971 | 17.630 | -169.709 | -332.194 | -81.094 | -100.894 | 0.67 | -2465.760 | 167.642 |
+| 1a9nR_M11.pdb | 13.646 | -9617.315 | -6666.93 | 16.434 | 18.388 | -163.088 | -356.332 | -82.149 | -100.366 | 0.69 | -2186.164 | 238.550 |
+| 1a9nR_M12.pdb | 10.691 | -10420.018 | -8273.36 | 15.640 | 17.739 | -174.046 | -334.797 | -87.357 | -96.707 | 0.69 | -2454.089 | 110.188 |
+
 ## Individual Method Images
 
 If you prefer to use individual scoring methods separately, the following Docker images are available:
