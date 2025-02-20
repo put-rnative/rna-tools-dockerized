@@ -173,7 +173,19 @@ def score_lociparse(pdb_path: str) -> float:
 
 def score_rsrnasp(pdb_path: str) -> float:
     """Score RNA structure using rsRNASP method"""
-    return 0.0
+    with tempfile.NamedTemporaryFile(suffix='.txt') as tmp_out:
+        result = run_command(
+            ["/opt/rsRNASP/rsRNASP", pdb_path, tmp_out.name],
+            expected_returncode=6,
+        )
+        
+        # Read score from second column
+        try:
+            with open(tmp_out.name) as f:
+                score = float(f.read().strip().split()[1])
+                return score
+        except (ValueError, IOError, IndexError) as e:
+            raise RuntimeError(f"Failed to read score from {tmp_out.name}: {e}")
 
 
 # Mapping of method names to scoring functions
