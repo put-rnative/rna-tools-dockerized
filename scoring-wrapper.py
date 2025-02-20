@@ -9,6 +9,7 @@ from typing import Dict, List, Tuple, Optional
 
 from lociPARSE import lociparse
 import pandas as pd
+from tqdm import tqdm
 
 
 def run_command(
@@ -306,9 +307,12 @@ def main():
     ]
 
     # Process files in parallel while preserving order
-    print("\nScoring files in parallel...")
     with ThreadPool() as pool:
-        scores = pool.starmap(lambda f, m: (f, m, SCORING_FUNCTIONS[m](f)), tasks)
+        scores = list(tqdm(
+            pool.imap(lambda t: (t[0], t[1], SCORING_FUNCTIONS[t[1]](t[0])), tasks),
+            total=len(tasks),
+            desc="Scoring files"
+        ))
 
     # Collect results preserving file order
     results: Dict[str, Dict[str, float]] = {pdb_file: {} for pdb_file in args.pdb_files}

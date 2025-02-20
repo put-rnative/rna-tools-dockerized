@@ -11,6 +11,7 @@ RUN apt-get update \
       python3-pandas \
       python3-pip \
       python3-setuptools \
+      python3-tqdm \
       python3-virtualenv \
  && rm -rf /var/lib/apt/lists/*
 
