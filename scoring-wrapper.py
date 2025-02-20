@@ -1,8 +1,10 @@
 #! /usr/bin/env python
 import argparse
 import os.path
-from typing import Dict, List, Tuple
+import subprocess
+import tempfile
 from multiprocessing.pool import ThreadPool
+from typing import Dict, List, Tuple
 
 import pandas as pd
 
@@ -23,7 +25,38 @@ SCORING_METHODS = [
 
 def score_3drnascore(pdb_path: str) -> float:
     """Score RNA structure using 3dRNAscore method"""
-    return 0.0
+    with tempfile.NamedTemporaryFile(suffix='.pdb') as formatted:
+        # Format the PDB file
+        subprocess.run(
+            [
+                "perl", 
+                "/opt/3dRNAscore/lib/format.pl",
+                pdb_path
+            ],
+            stdout=formatted,
+            check=True,
+            text=True
+        )
+        
+        # Run 3dRNAscore
+        result = subprocess.run(
+            [
+                "3dRNAscore",
+                "-s",
+                formatted.name
+            ],
+            capture_output=True,
+            text=True,
+            check=True
+        )
+        
+        # Parse the score from output
+        try:
+            # Assuming the score is the last number in the output
+            score = float(result.stdout.strip().split()[-1])
+            return score
+        except (ValueError, IndexError):
+            raise RuntimeError(f"Failed to parse 3dRNAscore output: {result.stdout}")
 
 
 def score_dfire(pdb_path: str) -> float:
