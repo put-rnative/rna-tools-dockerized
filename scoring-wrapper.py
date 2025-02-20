@@ -1,7 +1,9 @@
 #! /usr/bin/env python
 import argparse
 import os.path
-from typing import List, Dict
+from typing import Dict, List, Tuple
+from multiprocessing.pool import ThreadPool
+
 import pandas as pd
 
 SCORING_METHODS = [
@@ -119,16 +121,29 @@ def main():
 
     print(f"Processing PDB files: {args.pdb_files}")
 
-    # Score each PDB file with selected methods
-    results: Dict[str, Dict[str, float]] = {}
-    for pdb_file in args.pdb_files:
-        print(f"\nScoring {pdb_file}...")
-        results[pdb_file] = {}
-        for method in methods:
-            score = SCORING_FUNCTIONS[method](pdb_file)
-            results[pdb_file][method] = score
+    # Prepare all scoring tasks
+    tasks: List[Tuple[str, str]] = [
+        (pdb_file, method) 
+        for pdb_file in args.pdb_files
+        for method in methods
+    ]
 
-    # Create DataFrame and display results
+    # Process files in parallel while preserving order
+    print("\nScoring files in parallel...")
+    with ThreadPool() as pool:
+        scores = pool.starmap(
+            lambda f, m: (f, m, SCORING_FUNCTIONS[m](f)),
+            tasks
+        )
+
+    # Collect results preserving file order
+    results: Dict[str, Dict[str, float]] = {
+        pdb_file: {} for pdb_file in args.pdb_files
+    }
+    for pdb_file, method, score in scores:
+        results[pdb_file][method] = score
+
+    # Create DataFrame and display results 
     df = pd.DataFrame.from_dict(results, orient="index")
     print("\nScoring Results:")
     print(df.round(3))
