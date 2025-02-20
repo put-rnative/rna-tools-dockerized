@@ -174,6 +174,12 @@ docker run --rm -v ${pdb}:/tmp/input.pdb dfire-rna:latest bash -c "DFIRE_RNA /tm
 
 # RNA3DCNN
 
+RNA3DCNN is a deep learning-based method for RNA 3D structure quality assessment described in:
+
+Li, J., Zhu, W., Wang, J., Li, W., Gong, S., Zhang, J., & Wang, W. (2018). RNA3DCNN: Local and global quality assessments of RNA 3D structures using 3D deep convolutional neural networks. PLOS Computational Biology, 14(11), e1006514. https://doi.org/10.1371/journal.pcbi.1006514
+
+Source code: https://github.com/lijunRNA/RNA3DCNN
+
 Docker usage:
 
 ```bash
