@@ -205,7 +205,9 @@ def score_rna3dcnn_mdmc(pdb_path: str) -> float:
     return _run_rna3dcnn(pdb_path, "/opt/RNA3DCNN/RNA3DCNN_MDMC.hdf5")
 
 
-def _run_rna_scoring(pdb_path: str, executable: str, *, is_cgrnasp: bool = False) -> float:
+def _run_rna_scoring(
+    pdb_path: str, executable: str, *, is_cgrnasp: bool = False
+) -> float:
     """Helper function to run RNA scoring programs that need temp files and working directory"""
     try:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -220,7 +222,11 @@ def _run_rna_scoring(pdb_path: str, executable: str, *, is_cgrnasp: bool = False
             exe_dir = os.path.dirname(executable)
 
             # Prepare command - cgRNASP variants need different args than rsRNASP
-            cmd = [executable, tmpdir, "1", tmp_out] if is_cgrnasp else [executable, tmp_pdb, tmp_out]
+            cmd = (
+                [executable, tmpdir, "1", tmp_out]
+                if is_cgrnasp
+                else [executable, tmp_pdb, tmp_out]
+            )
 
             # Run scoring from executable directory
             result = run_command(
@@ -249,7 +255,9 @@ def score_cgrnasp(pdb_path: str) -> float:
 
 def score_cgrnasp_c(pdb_path: str) -> float:
     """Score RNA structure using cgRNASP-C method"""
-    return _run_rna_scoring(pdb_path, "/opt/cgRNASP/cgRNASP-C/cgRNASP-C", is_cgrnasp=True)
+    return _run_rna_scoring(
+        pdb_path, "/opt/cgRNASP/cgRNASP-C/cgRNASP-C", is_cgrnasp=True
+    )
 
 
 def score_cgrnasp_cn(pdb_path: str) -> float:
@@ -259,7 +267,9 @@ def score_cgrnasp_cn(pdb_path: str) -> float:
 
 def score_cgrnasp_pc(pdb_path: str) -> float:
     """Score RNA structure using cgRNASP-PC method"""
-    return _run_rna_scoring(pdb_path, "/opt/cgRNASP/cgRNASP-PC/cgRNASP-PC", is_cgrnasp=True)
+    return _run_rna_scoring(
+        pdb_path, "/opt/cgRNASP/cgRNASP-PC/cgRNASP-PC", is_cgrnasp=True
+    )
 
 
 def score_lociparse(pdb_path: str) -> float:
