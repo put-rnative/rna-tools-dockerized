@@ -275,20 +275,27 @@ def score_rsrnasp(pdb_path: str) -> float:
         executable = "/opt/rsRNASP/rsRNASP"
         exe_dir = os.path.dirname(executable)
 
-        with tempfile.NamedTemporaryFile(suffix=".txt") as tmp_out:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            # Copy input PDB to temp directory
+            tmp_pdb = os.path.join(tmpdir, "input.pdb")
+            shutil.copy2(pdb_path, tmp_pdb)
+
+            # Create temp file for output
+            tmp_out = os.path.join(tmpdir, "output.txt")
+
             result = run_command(
-                [executable, pdb_path, tmp_out.name],
+                [executable, tmp_pdb, tmp_out],
                 expected_returncode=6,
                 cwd=exe_dir,
             )
 
             # Read score from second column
             try:
-                with open(tmp_out.name) as f:
+                with open(tmp_out) as f:
                     score = float(f.read().strip().split()[1])
                     return score
             except (ValueError, IOError, IndexError) as e:
-                print(f"Failed to read score from {tmp_out.name}: {e}")
+                print(f"Failed to read score from {tmp_out}: {e}")
                 return np.nan
     except Exception as e:
         print(f"Error running rsRNASP: {str(e)}")
