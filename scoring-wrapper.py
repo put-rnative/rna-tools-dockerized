@@ -205,8 +205,8 @@ def score_rna3dcnn_mdmc(pdb_path: str) -> float:
     return _run_rna3dcnn(pdb_path, "/opt/RNA3DCNN/RNA3DCNN_MDMC.hdf5")
 
 
-def _run_cgrnasp(pdb_path: str, executable: str) -> float:
-    """Helper function to run cgRNASP variants"""
+def _run_rna_scoring(pdb_path: str, executable: str, *, is_cgrnasp: bool = False) -> float:
+    """Helper function to run RNA scoring programs that need temp files and working directory"""
     try:
         with tempfile.TemporaryDirectory() as tmpdir:
             # Copy PDB file to temp directory
@@ -219,9 +219,12 @@ def _run_cgrnasp(pdb_path: str, executable: str) -> float:
             # Get executable directory to use as cwd
             exe_dir = os.path.dirname(executable)
 
+            # Prepare command - cgRNASP variants need different args than rsRNASP
+            cmd = [executable, tmpdir, "1", tmp_out] if is_cgrnasp else [executable, tmp_pdb, tmp_out]
+
             # Run scoring from executable directory
             result = run_command(
-                [executable, tmpdir, "1", tmp_out],
+                cmd,
                 cwd=exe_dir,
                 expected_returncode=6,
             )
@@ -235,28 +238,28 @@ def _run_cgrnasp(pdb_path: str, executable: str) -> float:
                 print(f"Failed to read score from {tmp_out}: {e}")
                 return np.nan
     except Exception as e:
-        print(f"Error running cgRNASP variant: {str(e)}")
+        print(f"Error running RNA scoring program: {str(e)}")
         return np.nan
 
 
 def score_cgrnasp(pdb_path: str) -> float:
     """Score RNA structure using cgRNASP method"""
-    return _run_cgrnasp(pdb_path, "/opt/cgRNASP/cgRNASP/cgRNASP")
+    return _run_rna_scoring(pdb_path, "/opt/cgRNASP/cgRNASP/cgRNASP", is_cgrnasp=True)
 
 
 def score_cgrnasp_c(pdb_path: str) -> float:
     """Score RNA structure using cgRNASP-C method"""
-    return _run_cgrnasp(pdb_path, "/opt/cgRNASP/cgRNASP-C/cgRNASP-C")
+    return _run_rna_scoring(pdb_path, "/opt/cgRNASP/cgRNASP-C/cgRNASP-C", is_cgrnasp=True)
 
 
 def score_cgrnasp_cn(pdb_path: str) -> float:
     """Score RNA structure using cgRNASP-CN method"""
-    return _run_cgrnasp(pdb_path, "/opt/cgRNASP-CN/cgRNASP-CN")
+    return _run_rna_scoring(pdb_path, "/opt/cgRNASP-CN/cgRNASP-CN", is_cgrnasp=True)
 
 
 def score_cgrnasp_pc(pdb_path: str) -> float:
     """Score RNA structure using cgRNASP-PC method"""
-    return _run_cgrnasp(pdb_path, "/opt/cgRNASP/cgRNASP-PC/cgRNASP-PC")
+    return _run_rna_scoring(pdb_path, "/opt/cgRNASP/cgRNASP-PC/cgRNASP-PC", is_cgrnasp=True)
 
 
 def score_lociparse(pdb_path: str) -> float:
@@ -271,35 +274,7 @@ def score_lociparse(pdb_path: str) -> float:
 
 def score_rsrnasp(pdb_path: str) -> float:
     """Score RNA structure using rsRNASP method"""
-    try:
-        executable = "/opt/rsRNASP/rsRNASP"
-        exe_dir = os.path.dirname(executable)
-
-        with tempfile.TemporaryDirectory() as tmpdir:
-            # Copy input PDB to temp directory
-            tmp_pdb = os.path.join(tmpdir, "input.pdb")
-            shutil.copy2(pdb_path, tmp_pdb)
-
-            # Create temp file for output
-            tmp_out = os.path.join(tmpdir, "output.txt")
-
-            result = run_command(
-                [executable, tmp_pdb, tmp_out],
-                expected_returncode=6,
-                cwd=exe_dir,
-            )
-
-            # Read score from second column
-            try:
-                with open(tmp_out) as f:
-                    score = float(f.read().strip().split()[1])
-                    return score
-            except (ValueError, IOError, IndexError) as e:
-                print(f"Failed to read score from {tmp_out}: {e}")
-                return np.nan
-    except Exception as e:
-        print(f"Error running rsRNASP: {str(e)}")
-        return np.nan
+    return _run_rna_scoring(pdb_path, "/opt/rsRNASP/rsRNASP")
 
 
 # Mapping of method names to scoring functions
