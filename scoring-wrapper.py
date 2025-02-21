@@ -272,6 +272,11 @@ def score_cgrnasp_pc(pdb_path: str) -> float:
     )
 
 
+def score_rsrnasp(pdb_path: str) -> float:
+    """Score RNA structure using rsRNASP method"""
+    return _run_rna_scoring(pdb_path, "/opt/rsRNASP/rsRNASP")
+
+
 def score_lociparse(pdb_path: str) -> float:
     """Score RNA structure using lociPARSE method"""
     try:
@@ -280,11 +285,6 @@ def score_lociparse(pdb_path: str) -> float:
     except Exception as e:
         print(f"Error running lociPARSE: {str(e)}")
         return np.nan
-
-
-def score_rsrnasp(pdb_path: str) -> float:
-    """Score RNA structure using rsRNASP method"""
-    return _run_rna_scoring(pdb_path, "/opt/rsRNASP/rsRNASP")
 
 
 # Mapping of method names to scoring functions
