@@ -206,3 +206,21 @@ docker run --rm -v ${pdb}:/tmp/input.pdb rna3dcnn:latest python /opt/RNA3DCNN/Ma
 # Or using MDMC model:
 docker run --rm -v ${pdb}:/tmp/input.pdb rna3dcnn:latest python /opt/RNA3DCNN/Main.py -pn /tmp/input.pdb -model /opt/RNA3DCNN/RNA3DCNN_MDMC.hdf5 -local 0
 ```
+
+# Licenses
+
+This repository is licensed under the GNU General Public License v3 (GPL-3.0).
+
+Individual tools bundled within this repository have their own licenses:
+
+| Tool | License | Notes |
+|---|---|---|
+| **rsRNASP** | GPL-3.0 | |
+| **cgRNASP** | GPL-3.0 | |
+| **lociPARSE** | GPL-3.0 | |
+| **RNA-BRiQ** | Non-commercial | Free for non-commercial use |
+| **3dRNAscore** | No explicit license | Bundles Eigen (MPL 2.0) |
+| **cgRNASP-CN** | No explicit license | |
+| **DFIRE-RNA** | No explicit license | |
+| **RASP** | No explicit license | |
+| **RNA3DCNN** | No explicit license | |
