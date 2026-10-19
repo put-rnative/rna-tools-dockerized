@@ -8,6 +8,7 @@ docker run --rm -v ${pdb_dir}:/data rna-tools bash -c 'scoring-wrapper.py /data/
 ```
 
 The wrapper provides several features:
+
 - Parallel processing of files and methods
 - Automatic checkpointing to resume interrupted runs
 - Unified CSV output format
@@ -16,12 +17,13 @@ The wrapper provides several features:
 ## Wrapper Usage
 
 ```bash
-scoring-wrapper.py [-h] [--scoring-method {3dRNAscore,DFIRE,RASP,RNA-BRiQ,RNA3DCNN_MD,RNA3DCNN_MDMC,cgRNASP,cgRNASP-C,cgRNASP-CN,cgRNASP-PC,lociPARSE,rsRNASP}] 
+scoring-wrapper.py [-h] [--scoring-method {3dRNAscore,DFIRE,RASP,RNA-BRiQ,RNA3DCNN_MD,RNA3DCNN_MDMC,cgRNASP,cgRNASP-C,cgRNASP-CN,cgRNASP-PC,lociPARSE,rsRNASP}]
                   [--output FILE.csv]
                   pdb_files [pdb_files ...]
 ```
 
 The wrapper will:
+
 1. Process multiple PDB files in parallel
 2. Save progress automatically to a checkpoint file (unique per set of files/methods)
 3. Resume from checkpoint if interrupted
@@ -29,11 +31,11 @@ The wrapper will:
 
 Example output:
 
-| PDB File | 3dRNAscore | DFIRE | RASP | RNA3DCNN_MD | RNA3DCNN_MDMC | cgRNASP | cgRNASP-C | cgRNASP-CN | cgRNASP-PC | lociPARSE | rsRNASP | RNA-BRiQ |
-|----------|------------|-------|------|-------------|---------------|----------|-----------|------------|------------|-----------|----------|----------|
-| 1a9nR_M10.pdb | 11.605 | -10349.440 | -7606.76 | 15.971 | 17.630 | -169.709 | -332.194 | -81.094 | -100.894 | 0.67 | -2465.760 | 167.642 |
-| 1a9nR_M11.pdb | 13.646 | -9617.315 | -6666.93 | 16.434 | 18.388 | -163.088 | -356.332 | -82.149 | -100.366 | 0.69 | -2186.164 | 238.550 |
-| 1a9nR_M12.pdb | 10.691 | -10420.018 | -8273.36 | 15.640 | 17.739 | -174.046 | -334.797 | -87.357 | -96.707 | 0.69 | -2454.089 | 110.188 |
+| PDB File      | 3dRNAscore | DFIRE      | RASP     | RNA3DCNN_MD | RNA3DCNN_MDMC | cgRNASP  | cgRNASP-C | cgRNASP-CN | cgRNASP-PC | lociPARSE | rsRNASP   | RNA-BRiQ |
+| ------------- | ---------- | ---------- | -------- | ----------- | ------------- | -------- | --------- | ---------- | ---------- | --------- | --------- | -------- |
+| 1a9nR_M10.pdb | 11.605     | -10349.440 | -7606.76 | 15.971      | 17.630        | -169.709 | -332.194  | -81.094    | -100.894   | 0.67      | -2465.760 | 167.642  |
+| 1a9nR_M11.pdb | 13.646     | -9617.315  | -6666.93 | 16.434      | 18.388        | -163.088 | -356.332  | -82.149    | -100.366   | 0.69      | -2186.164 | 238.550  |
+| 1a9nR_M12.pdb | 10.691     | -10420.018 | -8273.36 | 15.640      | 17.739        | -174.046 | -334.797  | -87.357    | -96.707    | 0.69      | -2454.089 | 110.188  |
 
 ## Individual Method Images
 
@@ -213,14 +215,18 @@ This repository is licensed under the GNU General Public License v3 (GPL-3.0).
 
 Individual tools bundled within this repository have their own licenses:
 
-| Tool | License | Notes |
-|---|---|---|
-| **rsRNASP** | GPL-3.0 | |
-| **cgRNASP** | GPL-3.0 | |
-| **lociPARSE** | GPL-3.0 | |
-| **RNA-BRiQ** | Non-commercial | Free for non-commercial use |
-| **3dRNAscore** | No explicit license | Bundles Eigen (MPL 2.0) |
-| **cgRNASP-CN** | No explicit license | |
-| **DFIRE-RNA** | No explicit license | |
-| **RASP** | No explicit license | |
-| **RNA3DCNN** | No explicit license | |
+| Tool           | License             | Notes                       |
+| -------------- | ------------------- | --------------------------- |
+| **rsRNASP**    | GPL-3.0             |                             |
+| **cgRNASP**    | GPL-3.0             |                             |
+| **lociPARSE**  | GPL-3.0             |                             |
+| **RNA-BRiQ**   | Non-commercial      | Free for non-commercial use |
+| **3dRNAscore** | No explicit license | Bundles Eigen (MPL 2.0)     |
+| **cgRNASP-CN** | No explicit license |                             |
+| **DFIRE-RNA**  | No explicit license |                             |
+| **RASP**       | No explicit license |                             |
+| **RNA3DCNN**   | No explicit license |                             |
+
+# Funding
+
+This work was supported by the National Science Centre, Poland (Narodowe Centrum Nauki) under grant No. 2023/51/D/ST6/01207, "Exploring Multiple Loop Motifs in RNA Structures".
